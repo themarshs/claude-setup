@@ -5,17 +5,17 @@
 
 ## 当前状态
 
-- **阶段**：全量扫描 → 三波锻造 → 双螺旋 → 官方仓库扫描 → P0 锻造完成
-- **里程碑**：蒸馏器 ✓ | 检索体系 ✓ | MCP ✓ | skill-judge v2 ✓ | 全量扫描 ✓ | 三波锻造 ✓ | 双螺旋 ✓ | 官方P0 ✓
-- **当前任务**：commit + push ralph-loop & hookify
-- **下一步**：P1 红色警报（pr-review-toolkit, code-review, feature-dev）待用户决定
+- **阶段**：全量扫描 → 三波锻造 → 双螺旋 → 官方仓库扫描 → P0+P1 锻造完成
+- **里程碑**：蒸馏器 ✓ | 检索体系 ✓ | MCP ✓ | skill-judge v2 ✓ | 全量扫描 ✓ | 三波锻造 ✓ | 双螺旋 ✓ | 官方P0 ✓ | 官方P1 ✓
+- **当前任务**：commit + push P1 三个 Skills
+- **下一步**：官方仓库红色警报全部清零，可进入下一迭代
 
 ## 关键上下文
 
-- Skills：31 (29+2官方P0) + superpowers(~12) | Agents：4 | Rules：12 | Hooks：7 | MCP：2
-- 官方P0新增：ralph-loop (Stop Hook自循环), hookify (声明式Hook规则)
-- 来源：anthropics/claude-plugins-official (7,956⭐) 扫描发现5个红色警报，已完成2个P0
-- P1待处理：pr-review-toolkit (6 Agent并行PR审查), code-review (4 Agent+置信度), feature-dev (7阶段pipeline)
+- Skills：34 (31+3官方P1) + superpowers(~12) | Agents：4 | Rules：12 | Hooks：7 | MCP：2
+- 官方P1新增：pr-review-toolkit (6视角PR审查), code-review (5-Agent合规审查), feature-dev (7阶段pipeline)
+- 来源：anthropics/claude-plugins-official (7,956⭐) 5个红色警报全部完成
+- 审查三件套：requesting-code-review(WHEN调度) → pr-review-toolkit/code-review(HOW执行) → code-review-standards(WHAT格式)
 - 报告：`reports/full-scan-2137.md`
 
 ## compact 后恢复指令

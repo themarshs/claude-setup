@@ -1,8 +1,8 @@
 # Claude Code Arsenal / Claude Code 武器库
 
-> 31 Skills + 4 Agents + 12 Rules + 7 Hooks — forged from 2,137 community assets
+> 34 Skills + 4 Agents + 12 Rules + 7 Hooks — forged from 2,137 community assets
 >
-> 31 个 Skills + 4 个 Agents + 12 条 Rules + 7 个 Hooks — 从 2,137 条社区资产中基因锻造而来
+> 34 个 Skills + 4 个 Agents + 12 条 Rules + 7 个 Hooks — 从 2,137 条社区资产中基因锻造而来
 
 ---
 
@@ -31,7 +31,7 @@ Concise Skill (~150 lines, pure knowledge delta)
 
 ## Arsenal Overview / 武器库总览
 
-### Skills (31)
+### Skills (34)
 
 | Category | Skill | Description |
 |----------|-------|-------------|
@@ -64,6 +64,9 @@ Concise Skill (~150 lines, pure knowledge delta)
 | | `evolution-session` | Independent evolution session executor for L3 tool forging |
 | **Automation** | `ralph-loop` | Stop Hook self-loop for unattended iteration with completion signals |
 | | `hookify` | Declarative Hook rules via Markdown+YAML with 6 operators |
+| **Code Review** | `pr-review-toolkit` | 6-perspective parallel PR review (code/test/error/type/comment/simplify) |
+| | `code-review` | 5-agent compliance review with per-issue confidence scoring |
+| **Workflow** | `feature-dev` | 7-phase gated pipeline: Discovery→Explore→Questions→Design→Implement→Review→Summary |
 | **Quality** | `requesting-code-review` | Size triage + content-aware routing + static analysis pre-check |
 | | `agent-browser` | Browser automation CLI for web interaction |
 
@@ -98,6 +101,9 @@ Concise Skill (~150 lines, pure knowledge delta)
 | | `evolution-session` | 独立进化夜班执行器 + L3 工具锻造 |
 | **自动化** | `ralph-loop` | Stop Hook 自循环 + 完成信号匹配 + 无人值守迭代 |
 | | `hookify` | Markdown+YAML 声明式 Hook 规则 + 6 种 operator |
+| **代码审查** | `pr-review-toolkit` | 6 视角并行 PR 审查 (code/test/error/type/comment/simplify) |
+| | `code-review` | 5-Agent 合规性审查 + 逐 issue 置信度评分 |
+| **工作流** | `feature-dev` | 7 阶段硬门控 Pipeline：Discovery→Summary + 三哲学架构对比 |
 | **质量守护** | `requesting-code-review` | 大小分级 + 内容感知路由 + 静态分析预检 |
 | | `agent-browser` | 浏览器自动化 CLI |
 

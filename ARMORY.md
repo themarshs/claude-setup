@@ -39,6 +39,9 @@
 | 进化会话 | evolution-session | Skill | 基准 | 独立进化夜班执行器：读工单+锻造工具+绑定路由，纯L3上下文 | `/evolve` 或处理 overnight-plan 工单时 |
 | 自循环迭代 | ralph-loop | Skill | 基准 | Stop Hook自循环+完成信号匹配+迭代安全阀，无人值守执行 | TDD循环/greenfield构建/批量重构需无人值守时 |
 | 声明式Hook | hookify | Skill | 基准 | Markdown+YAML声明式Hook规则+6种operator+block/warn双模式 | 新增模式匹配Hook规则时 |
+| 多视角PR审查 | pr-review-toolkit | Skill | 基准 | 6视角并行审查(code/test/error/type/comment/simplify)+编排决策树+置信度≥80过滤 | 执行PR代码质量审查时 |
+| 合规性审查引擎 | code-review | Skill | 基准 | 5-Agent并行(CLAUDE.md合规/浅层Bug/Git历史/前序PR评论/代码注释)+独立逐issue置信度评分+假阳性分类学 | 执行PR合规性审查时 |
+| 功能开发流水线 | feature-dev | Skill | 基准 | 7阶段硬门控Pipeline(Discovery→Summary)+三哲学架构对比+澄清问题模板 | 新功能多文件+需求模糊时 |
 
 ### Skills（superpowers 插件提供）
 
@@ -160,3 +163,6 @@
 | 痛觉检测 | **已填充** | pain-tracker Hook，滑动窗口重复搜索检测 |
 | 自循环迭代 | **已填充** | ralph-loop Skill，Stop Hook自循环+完成信号+安全阀 |
 | 声明式Hook | **已填充** | hookify Skill，Markdown声明式规则+条件引擎 |
+| 多视角PR审查 | **已填充** | pr-review-toolkit Skill，6视角并行+编排决策树+置信度过滤 |
+| 合规性审查引擎 | **已填充** | code-review Skill，5-Agent+逐issue评分+假阳性分类学 |
+| 功能开发流水线 | **已填充** | feature-dev Skill，7阶段硬门控+三哲学架构+澄清模板 |
