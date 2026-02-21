@@ -1,0 +1,152 @@
+
+    
+            break
+            reasons.append(f'unusual-role({kw})')
+            score += 3
+        if kw in name:
+        interesting.append((score, a['name'], a['source'], a['stars'], model, tools, reasons, bp[:300]))
+        reasons.append('codemap')
+        reasons.append('haiku-optimized')
+        reasons.append('memory-aware')
+        reasons.append('session-aware')
+        reasons.append('skill-aware')
+        reasons.append(f'detailed({a[\"bodyLength\"]}b)')
+        reasons.append(f'restricted-tools({len(tools)})')
+        score += 1
+        score += 2
+        tools = [t.strip().strip('\"').strip(\"'\") for t in m.group(1).split(',') if t.strip()]
+    # High detail = quality
+    # References skills or memory
+    # Skip if no meaningful content
+    # Tool restriction = thoughtful design
+    # Unusual names
+    # clean preview
+    # haiku model = cost-conscious design
+    agents = json.load(f)
+    bp = a.get('bodyPreview','') or ''
+    console.error('[TEST] MCP Server started successfully');
+    console.error('[TEST] Startup error:', err.message);
+    data = json.load(f)
+    for kw in unusual_kw:
+    if '.claude/skills' in bp or 'skill' in bp.lower():
+    if 'MEMORY' in bp or 'memory' in bp.lower():
+    if 'codemap' in bp.lower():
+    if 'session' in bp.lower():
+    if a.get('bodyLength',0) < 2000: continue
+    if a.get('bodyLength',0) > 10000:
+    if m:
+    if model == 'haiku':
+    if name in ('agents','readme'): continue
+    if score >= 3:
+    if tools and len(tools) < 6 and len(tools) > 0:
+    m = re.search(r'tools:\s*\[(.*?)\]', bp)
+    m2 = re.search(r'model:\s*(\w+)', bp)
+    model = a.get('model') or (m2.group(1) if m2 else None)
+    name = a['name'].lower()
+    name_repos[s['name'].lower()].add(repo)
+    preview_clean = preview.replace('\\r\\n',' ').replace('\\n',' ')[:200]
+    print(f'    preview: {preview_clean}')
+    print(f'    reasons: {\", \".join(reasons)}')
+    print(f'    tools: {tools if tools else \"unspecified\"}')
+    print(f'  {name}: {len(repos)} repos -> {sorted(repos)}')
+    print(f'\n  [{score}] {name} ({src}) [{stars}*] model={model}')
+    process.exit(1);
+    reasons = []
+    repo = s['source'].split('/')[1]
+    score = 0
+    setTimeout(() => process.exit(0), 2000);
+    tools = []
+    unusual_kw = ['observer','conductor','memory','context','orchestrat','sandbox','validator','guardian','sentinel','autopilot','state','sync']
+  console.error('[DIAG] FAILED after ' + (Date.now() - start) + 'ms:', err.message);
+  console.error('[DIAG] Server ready after ' + (Date.now() - start) + 'ms');
+  console.error(err.stack);
+  console.log(f + ': ' + (Array.isArray(d) ? d.length + ' entries' : 'object'));
+  const d = JSON.parse(fs.readFileSync(dir + '/' + f));
+  import('./index.mjs').then(() => {
+  process.exit(1);
+  setTimeout(() => process.exit(0), 3000);
+  }).catch(err => {
+  });
+"
+" 2>&1
+" 2>&1 || true
+# Criteria: unusual name, unusual tool combo, high bodyLength, unique source
+# Cross-repo skills (appear in 2+ different repos, not just duplicates within same repo)
+# Find innovative/unusual agents
+BASH: cd "D:/ai/mcp-servers/distillery-mcp-server" && NODE_PATH="D:/ai/distillery/node_modules" timeout 60 node -e "
+BASH: cd "D:/ai/mcp-servers/distillery-mcp-server" && timeout 15 node -e "
+BASH: cd D:/ai/distillery && git rm --cached output/search-index.json 2>&1
+BASH: cp "D:/ai/setup/MEMORY.md" "D:/ai/setup/MEMORY.bak"
+BASH: cp D:/ai/setup/MEMORY.md D:/ai/setup/MEMORY.bak
+BASH: node -e "
+BASH: python -c "
+BASH: rm "D:/ai/setup/MEMORY.bak"
+BASH: rm D:/ai/setup/MEMORY.bak
+C:\Users\19132\.claude\plans\curried-waddling-pinwheel.md
+D:/ai/distillery/DISTILLATION-REPORT.md
+D:/ai/distillery/distill.mjs
+D:/ai/distillery/lib/search-core.mjs
+D:/ai/distillery/search.mjs
+D:/ai/lab/skill-sandbox/orama-trial/test-orama.mjs
+D:/ai/mcp-servers/distillery-mcp-server/index.mjs
+D:/ai/mcp-servers/distillery-mcp-server/package.json
+D:/ai/setup/.claude/agents/retrieval-orchestrator.md
+D:/ai/setup/.claude/rules/code-review-standards.md
+D:/ai/setup/.claude/settings.local.json
+D:/ai/setup/.claude/skills/deep-research/SKILL.md
+D:/ai/setup/.claude/skills/distillery-search/SKILL.md
+D:/ai/setup/.claude/skills/hunt/SKILL.md
+D:/ai/setup/.claude/skills/rag/SKILL.md
+D:/ai/setup/.claude/skills/requesting-code-review/SKILL.md
+D:/ai/setup/.claude/skills/retrieval-methodology/SKILL.md
+D:/ai/setup/.claude/skills/skill-judge/SKILL.md
+D:/ai/setup/.claude/skills/skill-judge/references/element-dissection.md
+D:/ai/setup/.claude/skills/skill-judge/references/whole-skill-evaluation.md
+D:/ai/setup/.gitignore
+D:/ai/setup/.mcp.json
+D:/ai/setup/ARMORY.md
+D:/ai/setup/MEMORY.md
+D:/ai/setup/research-openclaw.md
+D:\ai\distillery\.gitignore
+D:\ai\distillery\README.md
+D:\ai\distillery\build-index.mjs
+D:\ai\distillery\distill.mjs
+D:\ai\distillery\search.mjs
+D:\ai\setup\.claude\rules\coding.md
+D:\ai\setup\.claude\rules\confidence-gate.md
+D:\ai\setup\.claude\rules\error-discipline.md
+D:\ai\setup\.claude\rules\handoff-protocol.md
+D:\ai\setup\.claude\rules\language.md
+D:\ai\setup\.claude\rules\lead-discipline.md
+D:\ai\setup\.claude\rules\security-gate.md
+D:\ai\setup\.claude\skills\deep-research\SKILL.md
+D:\ai\setup\.claude\skills\distillery-search\SKILL.md
+D:\ai\setup\.claude\skills\knowledge-evolution\SKILL.md
+D:\ai\setup\ARMORY.md
+D:\ai\setup\MEMORY.md
+D:\ai\setup\research-mcp-ecosystem.md
+console.error('[DIAG] Starting import...');
+const dir = 'D:/ai/distillery/output';
+const fs = require('fs');
+const start = Date.now();
+cross_repo = {name: repos for name, repos in name_repos.items() if len(repos) >= 2}
+for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.json'))) {
+for a in agents:
+for name, repos in sorted(cross_repo.items(), key=lambda x: -len(x[1])):
+for s in data:
+for score, name, src, stars, model, tools, reasons, preview in interesting[:25]:
+from collections import defaultdict
+import json, re
+import json, sys, math
+import('./index.mjs').then(() => {
+interesting = []
+interesting.sort(key=lambda x: -x[0])
+name_repos = defaultdict(set)
+print('=== INNOVATIVE / UNUSUAL AGENTS ===')
+print('=== SKILLS APPEARING IN 2+ DIFFERENT REPOS (community consensus) ===')
+sys.stdout.reconfigure(encoding='utf-8')
+with open('D:/ai/distillery/output/agents.json', 'r', encoding='utf-8') as f:
+with open('D:/ai/distillery/output/skills.json', 'r', encoding='utf-8') as f:
+}
+}).catch(err => {
+});

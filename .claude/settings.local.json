@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh repo view:*)",
+      "Bash(gh search repos:*)",
+      "Bash(python:*)",
+      "mcp__context7__resolve-library-id",
+      "mcp__github__search_repositories",
+      "mcp__github__get_file_contents",
+      "mcp__github__list_branches",
+      "mcp__github__search_code",
+      "mcp__distillery__search",
+      "mcp__distillery__get_asset",
+      "mcp__distillery__list_types",
+      "mcp__distillery__similar"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "distillery"
+  ],
+  "mcpServers": {
+    "distillery": {
+      "command": "node",
+      "args": [
+        "D:/ai/mcp-servers/distillery-mcp-server/index.mjs"
+      ],
+      "env": {
+        "NODE_PATH": "D:/ai/distillery/node_modules"
+      }
+    }
+  },
+  "enableAllProjectMcpServers": true
+}

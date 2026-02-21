@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "distillery": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "D:/ai/mcp-servers/distillery-mcp-server/index.mjs"
+      ],
+      "env": {
+        "NODE_PATH": "D:/ai/distillery/node_modules"
+      }
+    }
+  }
+}
