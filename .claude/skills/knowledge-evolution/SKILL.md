@@ -1,112 +1,181 @@
 ---
 name: knowledge-evolution
-description: 元回顾阶段的知识进化框架。将螺旋迭代中的经验转化为原子本能，聚类升级为 Skill/Agent/Rule。
-version: 1.0.0
+description: Hooks-driven instinct learning framework. Turns spiral iteration experience into atomic instincts with confidence decay, clustering into Rules/Skills/Agents.
+version: 2.0.0
 ---
 
-# 知识进化框架（Knowledge Evolution Framework）
+# Knowledge Evolution Framework
 
-> 在螺旋 SOP 元回顾阶段使用。将每轮迭代经验沉淀为可复用知识。
+> Meta-review phase of Spiral SOP. Deterministic observation + atomic instincts + confidence decay.
 
-## 激活条件
+## Activation
 
-- 螺旋 SOP 进入元回顾阶段时
-- 发现反复出现的模式需要固化时
-- 需要评估已有知识是否过时时
+- Spiral SOP enters meta-review phase
+- Recurring patterns need crystallization
+- Existing knowledge staleness check required
 
-## 原子本能模型（Instinct Model）
+## Observation Architecture (Hooks, not Skills)
 
-最小知识单元。一个触发条件，一个动作。
+Skills fire ~50-80% probabilistically. Hooks fire 100% deterministically.
+
+```
+PreToolUse / PostToolUse Hooks
+      │
+      │  append every tool call + outcome
+      ▼
+observations.jsonl  (rotate: 10MB max, archive after 7 days)
+      │
+      │  pattern detection (4 categories)
+      ▼
+┌─ user_corrections    → instinct (confidence 0.5, direct signal)
+├─ error_resolutions   → instinct (confidence 0.3, needs validation)
+├─ repeated_workflows  → instinct (confidence 0.5, frequency-based)
+└─ tool_preferences    → instinct (confidence 0.4, behavioral signal)
+```
+
+### Hook Configuration (settings.json)
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [{ "matcher": "*", "hooks": [{
+      "type": "command",
+      "command": "<observer-script> pre"
+    }]}],
+    "PostToolUse": [{ "matcher": "*", "hooks": [{
+      "type": "command",
+      "command": "<observer-script> post"
+    }]}]
+  }
+}
+```
+
+## Atomic Instinct Model
+
+One trigger, one action. Smallest knowledge unit.
 
 ```yaml
-id: <kebab-case 唯一标识>
-trigger: "当 [具体场景] 时"
-action: "执行 [具体动作]"
+id: <kebab-case-id>
+trigger: "when [specific scenario]"
+action: "do [specific action]"
 confidence: <0.3 - 0.9>
-domain: <生态位标签>  # code-style | testing | search | architecture | workflow
-source: <来源>        # spiral-observation | user-correction | audit-result
+domain: <niche-tag>  # code-style | testing | search | architecture | workflow
+source: <origin>     # spiral-observation | user-correction | hook-detection | inherited
 evidence:
-  - <观察记录 1>
-  - <观察记录 2>
+  - <observation 1>
+  - <observation 2>
 created: <ISO 8601>
 last_validated: <ISO 8601>
 ```
 
-## 置信度体系
+### Source Layering
 
-| 分值 | 含义 | 行为 |
-|------|------|------|
-| 0.3 | 试探 | 仅记录，不自动应用 |
-| 0.5 | 中等 | 相关时建议，不强制 |
-| 0.7 | 强确信 | 自动应用，无需确认 |
-| 0.9 | 核心行为 | 写入 rules，成为纪律 |
+| Layer | Path | Description |
+|-------|------|-------------|
+| personal | `instincts/personal/` | Self-learned from observation |
+| inherited | `instincts/inherited/` | Imported from other users/projects |
 
-### 置信度变化规则
+Inherited instincts start at confidence 0.5 (not auto-approved), must earn trust locally.
 
-**增长**（每次 +0.1，上限 0.9）：
-- 同一模式在不同迭代轮次中重复出现
-- 用户未纠正该行为
-- 多个独立来源交叉验证
+## Confidence System
 
-**衰减**（decay_rate: 0.05 / 轮）：
-- 连续 N 轮未被触发，每轮 -0.05
-- 用户显式纠正 → 直接降至 0.3
-- 出现矛盾证据 → 降 0.2
+| Score | Meaning | Behavior |
+|-------|---------|----------|
+| 0.3 | Tentative | Record only, never auto-apply |
+| 0.5 | Moderate | Suggest when relevant, don't enforce |
+| 0.7 | Strong | Auto-apply, no confirmation needed |
+| 0.9 | Core | Promote to `.claude/rules/`, becomes discipline |
 
-**淘汰**：置信度 < 0.3 → 移入 `archive/deprecated-instincts/`
+### Confidence Dynamics (decay_rate: 0.05/round)
 
-## 进化路径
+**Growth** (+0.1 per event, cap 0.9):
+- Same pattern confirmed across different spiral rounds
+- User does not correct the behavior
+- Cross-validated by independent sources
+
+**Decay** (automatic, continuous):
+- Not triggered for N consecutive rounds: -0.05/round
+- User explicit correction: drop to 0.3 immediately
+- Contradicting evidence: -0.2
+
+**Elimination**: confidence < 0.3 → move to `archive/deprecated-instincts/`
+
+## Evolution Path
 
 ```
-单个本能 (instinct)
-    │
-    │ 同 domain 下积累 ≥3 个相关本能
+Single instinct
+    │  same domain accumulates >= 3 related instincts
     ▼
-本能聚类 (cluster)
-    │
-    │ 聚类置信度均值 ≥0.7
+Instinct cluster
+    │  cluster mean confidence >= 0.7
     ▼
-升级判定：
-├─ 操作规程类 → 写入 .claude/rules/ (Rule)
-├─ 知识密集类 → 写入 .claude/skills/ (Skill)
-└─ 编排流程类 → 写入 .claude/agents/ (Agent)
+Upgrade decision:
+├─ Constraint/discipline → .claude/rules/   (Rule)
+├─ Domain knowledge      → .claude/skills/  (Skill)
+└─ Multi-step orchestration → .claude/agents/ (Agent)
 ```
 
-### 升级条件
+### Upgrade Thresholds
 
-| 目标 | 条件 | 示例 |
-|------|------|------|
-| Rule | ≥3 本能，均值 ≥0.7，全部为约束/纪律类 | "提交前必须 npm audit" |
-| Skill | ≥3 本能，均值 ≥0.7，含领域知识 | "TypeScript 项目测试策略" |
-| Agent | ≥5 本能，均值 ≥0.7，含多步编排 | "安全审查 Agent" |
+| Target | Conditions |
+|--------|------------|
+| Rule | >= 3 instincts, mean >= 0.7, all constraint-type |
+| Skill | >= 3 instincts, mean >= 0.7, contains domain knowledge |
+| Agent | >= 5 instincts, mean >= 0.7, contains multi-step orchestration |
 
-## 元回顾操作规程
+Post-upgrade: tag source instincts with `evolved_into: <target-path>`.
 
-每轮螺旋结束时执行以下步骤：
+## Meta-Review Procedure
 
-### Step 1: 提取本能
-回顾本轮所有阶段，提取新发现的模式：
-- 哪些搜索策略有效/无效？
-- 哪些审判标准需要调整？
-- 哪些操作步骤可以固化？
+Execute at each spiral round end:
 
-### Step 2: 更新置信度
-- 已有本能被本轮验证 → confidence +0.1
-- 已有本能被本轮反驳 → confidence -0.2
-- 未被触发的本能 → confidence -0.05
+### Step 1: Extract Instincts
+Review all phases. For each pattern detected, create instinct via the 4 detection categories:
+- Which search strategies worked/failed? (repeated_workflows)
+- What did the user correct? (user_corrections)
+- What errors were resolved and how? (error_resolutions)
+- Which tools were preferred over alternatives? (tool_preferences)
 
-### Step 3: 聚类检查
-- 扫描同 domain 本能，检查是否满足升级条件
-- 满足则执行升级，产出新 Rule/Skill/Agent 文件
-- 升级后原始本能标记 `evolved_into: <目标路径>`
+### Step 2: Update Confidence
+- Existing instinct validated this round → +0.1
+- Existing instinct contradicted this round → -0.2
+- Existing instinct not triggered → -0.05 (decay)
 
-### Step 4: 产出 Diff
-必须满足 Mutation Checkpoint（CLAUDE.md 棘轮 4）：
-- 修改了 CLAUDE.md / settings.json / ARMORY.md，**或**
-- 在 ARMORY.md 标注"已封顶 + 理由"
+### Step 3: Cluster Check
+- Scan same-domain instincts, check upgrade thresholds
+- If met: produce new Rule/Skill/Agent file
+- Upgraded product must still pass Delta Gate for ARMORY entry
 
-## 与现有体系的关系
+### Step 4: Produce Diff
+Must satisfy Mutation Checkpoint (CLAUDE.md ratchet 4):
+- Modified CLAUDE.md / settings.json / ARMORY.md, **or**
+- Annotated "capped + reason" in ARMORY.md
 
-- **ARMORY.md**：本能升级为 Skill 后，必须通过 Delta Gate 才能入列 ARMORY
-- **Highlander 法则**：升级产物同样受同生态位唯一约束
-- **基因熔炉**：本能来自观察而非黑盒安装，天然满足白盒要求
+## Export / Import
+
+```bash
+# Export: share instincts (patterns only, no code/conversation content)
+# Creates portable YAML bundle from instincts/personal/
+/instinct-export → instincts-bundle.yaml
+
+# Import: receive instincts from another user/project
+# All imported instincts land in instincts/inherited/ at confidence 0.5
+/instinct-import <file> → instincts/inherited/
+```
+
+## System Integration
+
+- **ARMORY.md**: evolved Skills must pass Delta Gate to enter ARMORY
+- **Highlander**: evolved products follow single-niche constraint
+- **Gene Furnace**: instincts come from observation (white-box by nature)
+- **Hooks**: observation hooks must be registered in settings.json, not ad-hoc
+
+## NEVER
+
+- NEVER create instincts without evidence (minimum 1 concrete observation)
+- NEVER auto-apply instincts below confidence 0.7
+- NEVER skip decay calculation during meta-review
+- NEVER import inherited instincts at confidence > 0.5
+- NEVER promote to rules without cluster validation (>= 3 instincts, mean >= 0.7)
+- NEVER store raw conversation content in observations (patterns only)
+- NEVER bypass Delta Gate for evolved products entering ARMORY

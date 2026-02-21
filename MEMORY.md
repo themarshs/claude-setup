@@ -5,20 +5,17 @@
 
 ## 当前状态
 
-- **阶段**：skill-judge v2 + code-review 精装修完成
-- **里程碑**：蒸馏器 ✓ | 检索体系 ✓ | MCP Server ✓ | skill-judge v2（双模式）✓ | 首单精装修 ✓
-- **当前任务**：commit 全部变更
-- **下一步**：用户指定新任务 / 或用 skill-judge Mode 2 吸收更多社区资产
+- **阶段**：全量扫描 2,137 条 → 第一波 18 武器锻造完成 → 第二波红色警报进行中
+- **里程碑**：蒸馏器 ✓ | 检索体系 ✓ | MCP ✓ | skill-judge v2 ✓ | 精装修 ✓ | 全量扫描 ✓ | 第一波锻造 ✓
+- **当前任务**：第二波红色警报竞品升级（4 个），然后二轮检索验证
+- **下一步**：红色警报升级 → 二轮检索 → commit
 
 ## 关键上下文
 
-- Skills：15 手动 + superpowers（~12）| Agents：2 | Rules：8 | Hooks：4 | MCP：2
-- skill-judge v2：双模式（整体评分 + 元素解剖锻造），SKILL.md 82行 + 2 个 references
-- 首单精装修：code-reviewer 2 个 D 级 Skill → 17 元素 → 9 精华 → 134 行交钥匙
-- MCP 注册：`.mcp.json`（项目根目录），不是 settings.local.json
-- 搜索系统：Orama 3.1.18 hybrid + all-MiniLM-L6-v2 | 2,137 条 | vectors: true
-- GitHub 仓库：`themarshs/claude-distillery`（3 commits）
-- 纪律教训：MCP 配置位置、检索优先、mcp-builder Skill 不适用 stdio
+- Skills：26 (15原+11新) + superpowers(~12) | Agents：3 | Rules：12 | Hooks：6 | MCP：2
+- 第一波新增：tdd-workflow, context-engineering, prompt-engineering, tool-design, parallel-debugging, api-design, docker-patterns, database-expertise, multi-agent-team, code-refactoring, office-documents (Skills) + architect (Agent) + git-workflow, dependency-management, naming, documentation (Rules) + pre-tool-guard, prompt-submit (Hooks)
+- 红色警报待处理：continuous-learning-v2 > self-learning, testing-skills-with-subagents > writing-skills, code-review-ai > code-review, security-reviewer > security-gate
+- 报告：`reports/full-scan-2137.md`
 
 ## compact 后恢复指令
 
