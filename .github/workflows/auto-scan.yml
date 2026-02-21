@@ -6,9 +6,13 @@ on:
         description: 'Task description for Claude'
         required: false
         default: |
-          读取 MEMORY.md 恢复状态。扫描剩余仓库（anthropics/claude-code-security-review 3038⭐, nicobailon/raptor 1131⭐），
+          【系统纪律】禁止询问"是否继续"，禁止输出"请确认"，所有任务直接执行到完成。
+          遇到不确定时默认继续，不停下来请求许可。只有全部任务完成后才停止。
+
+          读取 MEMORY.md 恢复状态。扫描剩余仓库（anthropics/claude-code-security-review 3038⭐），
           发现红色警报就锻造 Skill，注册 ARMORY.md + README.md，commit + push。
-          完成后更新 MEMORY.md。
+          然后进入 Phase 2 发散搜索：用 distillery MCP + GitHub 搜索发现新的高星仓库，
+          扫描、审判、锻造，直到 max_turns 用尽。完成后更新 MEMORY.md。
       max_turns:
         description: 'Max agent turns'
         required: false

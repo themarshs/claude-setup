@@ -1,8 +1,8 @@
 # Claude Code Arsenal / Claude Code 武器库
 
-> 34 Skills + 4 Agents + 12 Rules + 7 Hooks — forged from 2,137 community assets
+> 38 Skills + 4 Agents + 12 Rules + 7 Hooks — forged from 2,137 community assets
 >
-> 34 个 Skills + 4 个 Agents + 12 条 Rules + 7 个 Hooks — 从 2,137 条社区资产中基因锻造而来
+> 38 个 Skills + 4 个 Agents + 12 条 Rules + 7 个 Hooks — 从 2,137 条社区资产中基因锻造而来
 
 ---
 
@@ -31,7 +31,7 @@ Concise Skill (~150 lines, pure knowledge delta)
 
 ## Arsenal Overview / 武器库总览
 
-### Skills (34)
+### Skills (38)
 
 | Category | Skill | Description |
 |----------|-------|-------------|
@@ -67,6 +67,10 @@ Concise Skill (~150 lines, pure knowledge delta)
 | **Code Review** | `pr-review-toolkit` | 6-perspective parallel PR review (code/test/error/type/comment/simplify) |
 | | `code-review` | 5-agent compliance review with per-issue confidence scoring |
 | **Workflow** | `feature-dev` | 7-phase gated pipeline: Discovery→Explore→Questions→Design→Implement→Review→Summary |
+| **Security** | `security-research` | 7-stage penetration testing workflow + layered loading |
+| | `exploit-feasibility` | Binary exploitability assessment + mitigation analysis |
+| | `fuzzing-automation` | AFL++ integration + crash collection + corpus management |
+| | `binary-analysis` | Crash analysis + GDB/LLDB debugging + reverse engineering |
 | **Quality** | `requesting-code-review` | Size triage + content-aware routing + static analysis pre-check |
 | | `agent-browser` | Browser automation CLI for web interaction |
 
@@ -104,6 +108,10 @@ Concise Skill (~150 lines, pure knowledge delta)
 | **代码审查** | `pr-review-toolkit` | 6 视角并行 PR 审查 (code/test/error/type/comment/simplify) |
 | | `code-review` | 5-Agent 合规性审查 + 逐 issue 置信度评分 |
 | **工作流** | `feature-dev` | 7 阶段硬门控 Pipeline：Discovery→Summary + 三哲学架构对比 |
+| **安全研究** | `security-research` | 7 阶段渗透测试工作流 + 分层加载 |
+| | `exploit-feasibility` | 二进制漏洞可利用性评估 + 缓解措施分析 |
+| | `fuzzing-automation` | AFL++ 集成 + 崩溃收集 + 语料库管理 |
+| | `binary-analysis` | 崩溃分析 + GDB/LLDB 调试 + 逆向工程 |
 | **质量守护** | `requesting-code-review` | 大小分级 + 内容感知路由 + 静态分析预检 |
 | | `agent-browser` | 浏览器自动化 CLI |
 
