@@ -152,7 +152,7 @@ ARMORY.md    — Arsenal Registry (active weapons, retired list, vacant niches)
 ```
 ┌─────────────────────────────────────────────────┐
 │  Layer 6: Governance / 治理层                     │
-│  12 Rules + 6 Hooks                              │
+│  12 Rules + 7 Hooks                              │
 ├─────────────────────────────────────────────────┤
 │  Layer 5: Quality / 质量守护层                     │
 │  security-reviewer, requesting-code-review,      │
@@ -212,6 +212,8 @@ Pain Signal (repeated search, empty results, stale cache)
 **EN:** The system can detect its own retrieval friction (repeated failed searches, stale caches) and autonomously heal — from zero-cost logging (L1) up to forging entirely new tools (L3) in dedicated evolution sessions. Every improvement is permanently bound into methodology routing rules.
 
 **CN:** 系统能自主检测检索摩擦（重复失败搜索、缓存过期），并自主修复——从零成本记录（L1）到在独立进化会话中锻造全新工具（L3）。每次改进都永久绑定到方法论路由规则中。
+
+### Four Ratchets / 4 道棘轮（不可违背）
 
 1. **Delta Gate**: New weapon must score strictly > current highest in same niche
 2. **Highlander**: Only one weapon per niche — old weapon physically deleted on replacement
