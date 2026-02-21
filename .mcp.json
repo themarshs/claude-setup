@@ -9,6 +9,10 @@
       "env": {
         "NODE_PATH": "D:/ai/distillery/node_modules"
       }
+    },
+    "minimax-docs": {
+      "type": "url",
+      "url": "https://platform.minimaxi.com/docs/mcp"
     }
   }
 }

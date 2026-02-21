@@ -15,7 +15,16 @@
 - 第二个动作：读 CLAUDE.md 获取系统规则
 - 然后执行任务
 
+## M2.5 最佳实践
+- 指令要清晰，解释"为什么"而非仅"做什么"，帮助模型理解意图
+- 提供明确的输入输出示例，而非仅描述期望格式
+- 充分利用 200K 上下文窗口：相关上下文直接放入，减少多轮交互
+- 临近上下文上限时控制 system prompt 长度，避免模型提前终止
+- 复杂任务分解为子步骤，每步有明确的完成标准
+
 ## 环境约束
 - 这是 Linux CI 环境，路径以 /home/runner/work/ 开头
-- 没有 MCP Server 可用（distillery 等本地服务不存在）
+- 没有 distillery 等本地 MCP Server（仅 minimax-docs 和 minimax-coding-plan 可用）
 - 中文回复，英文代码和配置
+- 所有模型调用走 MiniMax API（ANTHROPIC_BASE_URL 已配置）
+- sub-agent 模型已映射：sonnet/opus/haiku 均指向 MiniMax-M2.5 系列
