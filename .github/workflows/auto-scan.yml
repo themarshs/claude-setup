@@ -1,0 +1,68 @@
+name: Auto Arsenal Scan
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'Task description for Claude'
+        required: false
+        default: |
+          读取 MEMORY.md 恢复状态。扫描剩余仓库（anthropics/claude-code-security-review 3038⭐, nicobailon/raptor 1131⭐），
+          发现红色警报就锻造 Skill，注册 ARMORY.md + README.md，commit + push。
+          完成后更新 MEMORY.md。
+      max_turns:
+        description: 'Max agent turns'
+        required: false
+        default: '50'
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run Claude Code
+        env:
+          ANTHROPIC_BASE_URL: https://api.minimaxi.com/anthropic
+          ANTHROPIC_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+          ANTHROPIC_MODEL: MiniMax-M2.5-highspeed
+          ANTHROPIC_SMALL_FAST_MODEL: MiniMax-M2.5-highspeed
+          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
+        run: |
+          claude -p "${{ github.event.inputs.task }}" \
+            --model MiniMax-M2.5-highspeed \
+            --max-turns ${{ github.event.inputs.max_turns }} \
+            --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Task,mcp__github__search_repositories,mcp__github__search_code,mcp__github__get_file_contents,mcp__github__get_commit,mcp__github__list_commits,mcp__distillery__search,mcp__distillery__get_asset,mcp__distillery__similar,mcp__distillery__list_types" \
+            2>&1 | tee claude-output.log
+
+      - name: Push changes if any
+        run: |
+          git add -A
+          git diff --cached --quiet || git commit -m "feat(auto): arsenal scan via GitHub Actions
+
+          Co-Authored-By: MiniMax-M2.5 <noreply@minimaxi.com>"
+          git push || echo "Nothing to push"
+
+      - name: Upload log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: claude-output
+          path: claude-output.log
+          retention-days: 7
