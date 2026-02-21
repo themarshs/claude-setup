@@ -37,6 +37,8 @@
 | MCP 开发 | mcp-development | Skill | 基准 | @modelcontextprotocol/sdk stdio 开发：Transport决策+4 Primitive+Tool设计+调试+注册 | 构建 MCP Server 时 |
 | 螺旋自举 | spiral-bootstrap | Skill | 基准 | 双螺旋进化编排器：L1-L4分级响应+痛觉信号表+STALE缓存失效+方法论绑定 | 检索摩擦/重复查询/空结果时 |
 | 进化会话 | evolution-session | Skill | 基准 | 独立进化夜班执行器：读工单+锻造工具+绑定路由，纯L3上下文 | `/evolve` 或处理 overnight-plan 工单时 |
+| 自循环迭代 | ralph-loop | Skill | 基准 | Stop Hook自循环+完成信号匹配+迭代安全阀，无人值守执行 | TDD循环/greenfield构建/批量重构需无人值守时 |
+| 声明式Hook | hookify | Skill | 基准 | Markdown+YAML声明式Hook规则+6种operator+block/warn双模式 | 新增模式匹配Hook规则时 |
 
 ### Skills（superpowers 插件提供）
 
@@ -156,3 +158,5 @@
 | 螺旋自举 | **已填充** | spiral-bootstrap Skill，L1-L4分级+痛觉信号+STALE缓存 |
 | 进化执行 | **已填充** | evolution-session Skill，独立夜班+工单+路由绑定 |
 | 痛觉检测 | **已填充** | pain-tracker Hook，滑动窗口重复搜索检测 |
+| 自循环迭代 | **已填充** | ralph-loop Skill，Stop Hook自循环+完成信号+安全阀 |
+| 声明式Hook | **已填充** | hookify Skill，Markdown声明式规则+条件引擎 |
