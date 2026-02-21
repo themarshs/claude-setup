@@ -73,10 +73,17 @@
 # Criteria: unusual name, unusual tool combo, high bodyLength, unique source
 # Cross-repo skills (appear in 2+ different repos, not just duplicates within same repo)
 # Find innovative/unusual agents
+/home/runner/work/claude-setup/claude-setup/.claude/skills/binary-analysis/SKILL.md
+/home/runner/work/claude-setup/claude-setup/.claude/skills/exploit-feasibility/SKILL.md
+/home/runner/work/claude-setup/claude-setup/.claude/skills/fuzzing-automation/SKILL.md
+/home/runner/work/claude-setup/claude-setup/.claude/skills/security-research/SKILL.md
+/home/runner/work/claude-setup/claude-setup/ARMORY.md
+/home/runner/work/claude-setup/claude-setup/MEMORY.md
 BASH: cd "D:/ai/mcp-servers/distillery-mcp-server" && NODE_PATH="D:/ai/distillery/node_modules" timeout 60 node -e "
 BASH: cd "D:/ai/mcp-servers/distillery-mcp-server" && timeout 15 node -e "
 BASH: cd D:/ai/distillery && git rm --cached output/search-index.json 2>&1
 BASH: cp "D:/ai/setup/MEMORY.md" "D:/ai/setup/MEMORY.bak"
+BASH: cp /home/runner/work/claude-setup/claude-setup/MEMORY.md /home/runner/work/claude-setup/claude-setup/MEMORY.bak
 BASH: cp D:/ai/setup/MEMORY.md D:/ai/setup/MEMORY.bak
 BASH: node -e "
 BASH: python -c "
