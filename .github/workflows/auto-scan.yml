@@ -1,5 +1,14 @@
 name: Auto Arsenal Scan
 on:
+  # Issue-driven: create issue → label "claude" → auto-execute task in issue body
+  issues:
+    types: [opened, labeled, assigned]
+
+  # Interactive: @claude in issue/PR comments → respond
+  issue_comment:
+    types: [created]
+
+  # Manual trigger with custom prompt
   workflow_dispatch:
     inputs:
       task:
@@ -9,64 +18,50 @@ on:
           【系统纪律】禁止询问"是否继续"，禁止输出"请确认"，所有任务直接执行到完成。
           遇到不确定时默认继续，不停下来请求许可。只有全部任务完成后才停止。
 
-          读取 MEMORY.md 恢复状态。扫描剩余仓库（anthropics/claude-code-security-review 3038⭐），
-          发现红色警报就锻造 Skill，注册 ARMORY.md + README.md，commit + push。
-          然后进入 Phase 2 发散搜索：用 distillery MCP + GitHub 搜索发现新的高星仓库，
-          扫描、审判、锻造，直到 max_turns 用尽。完成后更新 MEMORY.md。
+          读取 MEMORY.md 恢复状态。进入 Phase 2 发散搜索：
+          用 GitHub 搜索发现新的高星 Claude Code 仓库，
+          扫描、审判、锻造，直到 max_turns 用尽。
+          发现红色警报就锻造 Skill，注册 ARMORY.md + README.md。
+          完成后更新 MEMORY.md。
       max_turns:
         description: 'Max agent turns'
         required: false
-        default: '50'
+        default: '100'
+
+env:
+  ANTHROPIC_BASE_URL: https://api.minimaxi.com/anthropic
+  CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
 
 jobs:
-  scan:
+  claude:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     permissions:
       contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Claude Code
-        run: npm install -g @anthropic-ai/claude-code
-
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          fetch-depth: 0
 
       - name: Run Claude Code
-        env:
-          ANTHROPIC_BASE_URL: https://api.minimaxi.com/anthropic
-          ANTHROPIC_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
-          ANTHROPIC_MODEL: MiniMax-M2.5-highspeed
-          ANTHROPIC_SMALL_FAST_MODEL: MiniMax-M2.5-highspeed
-          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
-        run: |
-          claude -p "${{ github.event.inputs.task }}" \
-            --model MiniMax-M2.5-highspeed \
-            --max-turns ${{ github.event.inputs.max_turns }} \
-            --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Task,mcp__github__search_repositories,mcp__github__search_code,mcp__github__get_file_contents,mcp__github__get_commit,mcp__github__list_commits,mcp__distillery__search,mcp__distillery__get_asset,mcp__distillery__similar,mcp__distillery__list_types" \
-            2>&1 | tee claude-output.log
+        id: claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.MINIMAX_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.task || '' }}
+          track_progress: ${{ github.event_name != 'workflow_dispatch' }}
+          claude_args: |
+            --model MiniMax-M2.5-highspeed
+            --max-turns ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.max_turns || '100' }}
 
-      - name: Push changes if any
-        run: |
-          git add -A
-          git diff --cached --quiet || git commit -m "feat(auto): arsenal scan via GitHub Actions
-
-          Co-Authored-By: MiniMax-M2.5 <noreply@minimaxi.com>"
-          git push || echo "Nothing to push"
-
-      - name: Upload log
+      - name: Upload execution log
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: claude-output
-          path: claude-output.log
+          name: claude-execution-${{ github.run_id }}
+          path: ${{ steps.claude.outputs.execution_file }}
           retention-days: 7

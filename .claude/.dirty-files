@@ -129,8 +129,10 @@ D:\ai\setup\.claude\rules\security-gate.md
 D:\ai\setup\.claude\skills\deep-research\SKILL.md
 D:\ai\setup\.claude\skills\distillery-search\SKILL.md
 D:\ai\setup\.claude\skills\knowledge-evolution\SKILL.md
+D:\ai\setup\.github\workflows\auto-scan.yml
 D:\ai\setup\ARMORY.md
 D:\ai\setup\MEMORY.md
+D:\ai\setup\README.md
 D:\ai\setup\research-mcp-ecosystem.md
 console.error('[DIAG] Starting import...');
 const dir = 'D:/ai/distillery/output';
