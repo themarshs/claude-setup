@@ -65,6 +65,26 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/stop-guard.sh\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/ralph-stop-hook.py\" \"$CLAUDE_PROJECT_DIR/.claude/ralph-loop.local.md\"",
+            "timeout": 15
+          }
+        ]
+      }
     ]
   }
 }
