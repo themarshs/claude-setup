@@ -5,9 +5,11 @@
 
 ---
 
-## 一、OpenCode 现有架构总览
+## 一、OpenCode 现有架构总览 [STALE]
+<!-- sources: CLAUDE.md, ARMORY.md, .claude/settings.json -->
 
-### 核心设计：治理闭环
+### 核心设计：治理闭环 [STALE]
+<!-- sources: .claude/hooks/pre-tool-guard.sh, .claude/hooks/post-tool-dirty-tracker.sh -->
 
 ```
 Governance → Audit → Learning
@@ -27,6 +29,7 @@ Governance → Audit → Learning
 ```
 
 ### Agent 定义（14 个，按职能分类）
+<!-- sources: .claude/agents/architect.md, .claude/agents/retrieval-orchestrator.md, .claude/agents/memory-updater.md, .claude/agents/security-reviewer.md -->
 
 **开发类：**
 - `architect` — 架构师
@@ -47,7 +50,8 @@ Governance → Audit → Learning
 - `meeting-readonly` — 会议只读
 - `meeting-sandbox` — 会议沙盒
 
-### Commands / 任务流（7 个）
+### Commands / 任务流（7 个） [STALE]
+<!-- sources: .claude/skills/hunt/SKILL.md, .claude/skills/deep-research/SKILL.md -->
 
 | 命令 | 绑定 Agent | 用途 |
 |------|-----------|------|
@@ -59,6 +63,7 @@ Governance → Audit → Learning
 | 其余 2 个 | — | 待确认 |
 
 ### MCP Server（3 个）
+<!-- sources: .claude/settings.json -->
 
 | 服务 | 位置 | 功能 |
 |------|------|------|
@@ -67,6 +72,7 @@ Governance → Audit → Learning
 | govops-mcp-server | `D:/ai/mcp-servers/govops-mcp-server/` | 审计日志记录 |
 
 ### 关键配置位置
+<!-- sources: .claude/settings.json, CLAUDE.md -->
 
 | 路径 | 内容 |
 |------|------|
@@ -81,7 +87,8 @@ Governance → Audit → Learning
 
 ---
 
-## 二、Claude Code 原生机制对照
+## 二、Claude Code 原生机制对照 [STALE]
+<!-- sources: CLAUDE.md, ARMORY.md -->
 
 | OpenCode 组件 | Claude Code 对应 | 载体 |
 |--------------|-----------------|------|
@@ -97,8 +104,10 @@ Governance → Audit → Learning
 ---
 
 ## 三、Claude Code 可用的原生扩展点
+<!-- sources: CLAUDE.md, docs/hooks.md, docs/skills.md, docs/settings.md -->
 
 ### 配置层级（优先级高→低）
+<!-- sources: .claude/settings.json, .claude/settings.local.json -->
 1. `managed-settings.json` — 组织强制
 2. CLI 启动参数 — 单次会话
 3. `.claude/settings.local.json` — 项目私有
@@ -106,10 +115,12 @@ Governance → Audit → Learning
 5. `~/.claude/settings.json` — 全局
 
 ### 知识注入
+<!-- sources: CLAUDE.md, .claude/rules/coding.md, .claude/rules/confidence-gate.md, .claude/rules/error-discipline.md, .claude/rules/security-gate.md -->
 - `CLAUDE.md` — 多级：组织 / 全局 / 项目 / 子目录
 - `.claude/rules/*.md` — 模块化规则（支持 glob 路径匹配）
 
-### 生命周期 Hooks
+### 生命周期 Hooks [STALE]
+<!-- sources: .claude/hooks/pre-tool-guard.sh, .claude/hooks/post-tool-dirty-tracker.sh, .claude/hooks/stop-guard.sh, .claude/hooks/pre-compact-save.sh, .claude/hooks/post-compact-restore.sh, .claude/hooks/prompt-submit.sh -->
 ```
 SessionStart → UserPromptSubmit → PreToolUse → PermissionRequest
 → PostToolUse → Notification → Stop → SubagentStart/Stop
@@ -121,21 +132,25 @@ SessionStart → UserPromptSubmit → PreToolUse → PermissionRequest
 - 异步模式：`"async": true`
 
 ### 多智能体
+<!-- sources: .claude/agents/architect.md, .claude/agents/retrieval-orchestrator.md, .claude/agents/memory-updater.md, .claude/agents/security-reviewer.md -->
 - 内建 Subagent：Explore / Plan / Bash / General-purpose
 - 自定义 Agent：`.claude/agents/*.md`
 - Agent Teams（实验性）：`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`
 
-### Skills（自定义斜杠命令）
+### Skills（自定义斜杠命令） [STALE]
+<!-- sources: .claude/skills/retrieval-methodology/SKILL.md, .claude/skills/hunt/SKILL.md, .claude/skills/deep-research/SKILL.md -->
 - 格式：目录 + `SKILL.md`（YAML frontmatter）
 - 位置：`.claude/skills/`（项目）/ `~/.claude/skills/`（全局）
 - 动态注入：`` !`command` `` 语法
 - 参数：`$ARGUMENTS`、`$0`、`$1`
 
 ### Plugins（打包体）
+<!-- sources: docs/plugins.md -->
 - `plugin.json` 定义元数据
 - 打包 Skills + Hooks + MCP + Agents
 
 ### 编程式接口
+<!-- sources: docs/cli-reference.md -->
 - `claude -p "Prompt"` — 单轮执行
 - `--output-format text|json|stream-json`
 - `--json-schema` — 结构化输出
@@ -143,7 +158,8 @@ SessionStart → UserPromptSubmit → PreToolUse → PermissionRequest
 
 ---
 
-## 四、待决策事项
+## 四、待决策事项 [STALE]
+<!-- sources: CLAUDE.md, ARMORY.md -->
 
 - [ ] 迁移策略：全量 / 精简 / 最小可用？
 - [ ] 14 个 Agent 中哪些高频、哪些可砍？

@@ -1,6 +1,6 @@
 # ARMORY.md — 武器库注册表
 
-> 最后更新：2026-02-21 全量扫描 2,137 条 → 第一波 18 新武器锻造完成
+> 最后更新：2026-02-21 全量扫描 2,137 条 → 三波锻造 + 双螺旋进化机制
 > 规则：同生态位只留一个（Highlander），新工具必须 > 当前最高分才能替换
 
 ## 活跃武器
@@ -35,6 +35,8 @@
 | Office 文档 | office-documents | Skill | 基准 | docx/xlsx/pdf/pptx 生成 + OOXML 结构 + 模板模式 | 生成 Office 文档时 |
 | Skill 测试 | skill-testing | Skill | 基准 | TDD for Skills：7种压力类型+合理化捕获+防弹判定 | 写/编辑 Skill 后验证时 |
 | MCP 开发 | mcp-development | Skill | 基准 | @modelcontextprotocol/sdk stdio 开发：Transport决策+4 Primitive+Tool设计+调试+注册 | 构建 MCP Server 时 |
+| 螺旋自举 | spiral-bootstrap | Skill | 基准 | 双螺旋进化编排器：L1-L4分级响应+痛觉信号表+STALE缓存失效+方法论绑定 | 检索摩擦/重复查询/空结果时 |
+| 进化会话 | evolution-session | Skill | 基准 | 独立进化夜班执行器：读工单+锻造工具+绑定路由，纯L3上下文 | `/evolve` 或处理 overnight-plan 工单时 |
 
 ### Skills（superpowers 插件提供）
 
@@ -84,6 +86,7 @@
 | 文件修改追踪 | post-tool-dirty-tracker.sh | Hook (PostToolUse) | 基准 | 记录 Edit/Write/Bash 修改的文件 | 自动：PostToolUse 事件触发 |
 | 红线硬阻断 | pre-tool-guard.sh | Hook (PreToolUse) | 基准 | 阻止写 mcp-servers/ + 警告写 main 分支 | 自动：Edit/Write 前触发 |
 | 自动唤醒 | prompt-submit.sh | Hook (UserPromptSubmit) | 基准 | 会话首 prompt 自动读 MEMORY.md 前 30 行 | 自动：用户提交 prompt 时 |
+| 痛觉检测 | pain-tracker.sh | Hook (PostToolUse) | 基准 | 滑动窗口检测重复搜索+写入痛觉账本 | 自动：搜索类工具调用后触发 |
 
 ### MCP
 
@@ -150,3 +153,6 @@
 | Office文档 | **已填充** | office-documents Skill，docx/xlsx/pdf/pptx |
 | 红线硬阻断 | **已填充** | pre-tool-guard Hook，PreToolUse阻断 |
 | 自动唤醒 | **已填充** | prompt-submit Hook，UserPromptSubmit |
+| 螺旋自举 | **已填充** | spiral-bootstrap Skill，L1-L4分级+痛觉信号+STALE缓存 |
+| 进化执行 | **已填充** | evolution-session Skill，独立夜班+工单+路由绑定 |
+| 痛觉检测 | **已填充** | pain-tracker Hook，滑动窗口重复搜索检测 |

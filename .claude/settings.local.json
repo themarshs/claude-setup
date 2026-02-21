@@ -43,6 +43,18 @@
         ]
       }
     ],
+    "PostToolUse": [
+      {
+        "matcher": "Grep|Glob|WebSearch|mcp__distillery__search|mcp__github__search_code|mcp__github__search_repositories",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pain-tracker.sh\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [

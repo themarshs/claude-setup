@@ -1,8 +1,8 @@
 # Claude Code Arsenal / Claude Code 武器库
 
-> 27 Skills + 4 Agents + 12 Rules + 6 Hooks — forged from 2,137 community assets
+> 29 Skills + 4 Agents + 12 Rules + 7 Hooks — forged from 2,137 community assets
 >
-> 27 个 Skills + 4 个 Agents + 12 条 Rules + 6 个 Hooks — 从 2,137 条社区资产中基因锻造而来
+> 29 个 Skills + 4 个 Agents + 12 条 Rules + 7 个 Hooks — 从 2,137 条社区资产中基因锻造而来
 
 ---
 
@@ -31,7 +31,7 @@ Concise Skill (~150 lines, pure knowledge delta)
 
 ## Arsenal Overview / 武器库总览
 
-### Skills (27)
+### Skills (29)
 
 | Category | Skill | Description |
 |----------|-------|-------------|
@@ -60,6 +60,8 @@ Concise Skill (~150 lines, pure knowledge delta)
 | | `self-learning` | Autonomous web-based skill generator |
 | | `knowledge-evolution` | Hooks-driven instinct learning with confidence decay |
 | | `find-skills` | Discover and install community skills |
+| | `spiral-bootstrap` | Double-helix evolution orchestrator with L1-L4 graded response |
+| | `evolution-session` | Independent evolution session executor for L3 tool forging |
 | **Quality** | `requesting-code-review` | Size triage + content-aware routing + static analysis pre-check |
 | | `agent-browser` | Browser automation CLI for web interaction |
 
@@ -90,6 +92,8 @@ Concise Skill (~150 lines, pure knowledge delta)
 | | `self-learning` | 自主 Web 搜索生成 Skill |
 | | `knowledge-evolution` | Hooks 驱动的本能学习 + 置信度衰减 |
 | | `find-skills` | 搜索安装社区 Skills |
+| | `spiral-bootstrap` | 双螺旋进化编排器 + L1-L4 分级响应 |
+| | `evolution-session` | 独立进化夜班执行器 + L3 工具锻造 |
 | **质量守护** | `requesting-code-review` | 大小分级 + 内容感知路由 + 静态分析预检 |
 | | `agent-browser` | 浏览器自动化 CLI |
 
@@ -119,7 +123,7 @@ Concise Skill (~150 lines, pure knowledge delta)
 | `handoff-protocol` | Agent handoff document format + verdict system |
 | `language` | Chinese discussion, English code/config |
 
-### Hooks (6)
+### Hooks (7)
 
 | Hook | Trigger | Purpose / 用途 |
 |------|---------|----------------|
@@ -129,6 +133,7 @@ Concise Skill (~150 lines, pure knowledge delta)
 | `post-tool-dirty-tracker` | PostToolUse | Track files modified by Edit/Write/Bash |
 | `pre-tool-guard` | PreToolUse | **Hard-block** writes to mcp-servers/, warn on main branch |
 | `prompt-submit` | UserPromptSubmit | Auto-read MEMORY.md on first prompt per session |
+| `pain-tracker` | PostToolUse | Sliding-window detection of repeated searches → pain ledger |
 
 ---
 
@@ -173,7 +178,40 @@ ARMORY.md    — Arsenal Registry (active weapons, retired list, vacant niches)
 └─────────────────────────────────────────────────┘
 ```
 
-### Four Ratchets / 4 道棘轮（不可违背）
+### Double-Helix Self-Evolution / 双螺旋自进化
+
+```
+Pain Signal (repeated search, empty results, stale cache)
+      │
+      ▼
+┌─────────────────────────────────────────────────┐
+│  spiral-bootstrap (L1-L4 Graded Response)       │
+│                                                  │
+│  L1: Silent log (0 cost)                        │
+│  L2: Data distillation (~2K tokens)             │
+│  L3: Tool forging (~50K tokens, async)    ──────┼──► evolution-session
+│  L4: Architecture overhaul (user-authorized)    │      (independent /evolve)
+└──────────┬──────────────────────────────────────┘
+           │
+           ▼
+┌─────────────────────────────────────────────────┐
+│  Pain Detection Infrastructure                   │
+│  pain-tracker.sh → .pain_ledger.json            │
+│  dirty-tracker.sh → ARCHITECTURE_MAP [STALE]    │
+│  overnight-plan.md → L3 work orders             │
+└──────────┬──────────────────────────────────────┘
+           │
+           ▼
+┌─────────────────────────────────────────────────┐
+│  Methodology Binding (non-negotiable)            │
+│  Every L2/L3 success MUST update                │
+│  retrieval-methodology routing rules            │
+└─────────────────────────────────────────────────┘
+```
+
+**EN:** The system can detect its own retrieval friction (repeated failed searches, stale caches) and autonomously heal — from zero-cost logging (L1) up to forging entirely new tools (L3) in dedicated evolution sessions. Every improvement is permanently bound into methodology routing rules.
+
+**CN:** 系统能自主检测检索摩擦（重复失败搜索、缓存过期），并自主修复——从零成本记录（L1）到在独立进化会话中锻造全新工具（L3）。每次改进都永久绑定到方法论路由规则中。
 
 1. **Delta Gate**: New weapon must score strictly > current highest in same niche
 2. **Highlander**: Only one weapon per niche — old weapon physically deleted on replacement

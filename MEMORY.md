@@ -5,16 +5,16 @@
 
 ## 当前状态
 
-- **阶段**：全量扫描 2,137 条 → 第一波 18 武器锻造完成 → 第二波红色警报进行中
-- **里程碑**：蒸馏器 ✓ | 检索体系 ✓ | MCP ✓ | skill-judge v2 ✓ | 精装修 ✓ | 全量扫描 ✓ | 第一波锻造 ✓
-- **当前任务**：第二波红色警报竞品升级（4 个），然后二轮检索验证
-- **下一步**：红色警报升级 → 二轮检索 → commit
+- **阶段**：全量扫描 → 三波锻造完成 → 双螺旋进化机制已部署
+- **里程碑**：蒸馏器 ✓ | 检索体系 ✓ | MCP ✓ | skill-judge v2 ✓ | 全量扫描 ✓ | 三波锻造 ✓ | 双螺旋 ✓
+- **当前任务**：commit + push 双螺旋进化机制
+- **下一步**：提交推送 → 完成
 
 ## 关键上下文
 
-- Skills：26 (15原+11新) + superpowers(~12) | Agents：3 | Rules：12 | Hooks：6 | MCP：2
-- 第一波新增：tdd-workflow, context-engineering, prompt-engineering, tool-design, parallel-debugging, api-design, docker-patterns, database-expertise, multi-agent-team, code-refactoring, office-documents (Skills) + architect (Agent) + git-workflow, dependency-management, naming, documentation (Rules) + pre-tool-guard, prompt-submit (Hooks)
-- 红色警报待处理：continuous-learning-v2 > self-learning, testing-skills-with-subagents > writing-skills, code-review-ai > code-review, security-reviewer > security-gate
+- Skills：29 (27+2双螺旋) + superpowers(~12) | Agents：4 | Rules：12 | Hooks：7 | MCP：2
+- 双螺旋新增：spiral-bootstrap, evolution-session (Skills) + pain-tracker (Hook)
+- 双螺旋配套：overnight-plan.md 工单 + ARCHITECTURE_MAP.md STALE注解 + retrieval-methodology 路由绑定 + dirty-tracker STALE标记
 - 报告：`reports/full-scan-2137.md`
 
 ## compact 后恢复指令
