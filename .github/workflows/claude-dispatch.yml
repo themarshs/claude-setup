@@ -1,0 +1,53 @@
+name: Claude Dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'Task description for Claude'
+        required: true
+      max_turns:
+        description: 'Max agent turns'
+        required: false
+        default: '100'
+
+env:
+  ANTHROPIC_BASE_URL: https://api.minimaxi.com/anthropic
+  CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
+
+jobs:
+  claude:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Claude Code
+        id: claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.MINIMAX_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: ${{ github.event.inputs.task }}
+          additional_permissions: |
+            actions: read
+          claude_args: |
+            --model MiniMax-M2.5-highspeed
+            --max-turns ${{ github.event.inputs.max_turns }}
+
+      - name: Upload execution log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: claude-execution-${{ github.run_id }}
+          path: ${{ steps.claude.outputs.execution_file }}
+          retention-days: 7
