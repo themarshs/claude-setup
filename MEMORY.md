@@ -5,18 +5,17 @@
 
 ## 当前状态
 
-- **阶段**：全量扫描 → 三波锻造 → 双螺旋 → 官方仓库扫描 → P0+P1 锻造完成
-- **里程碑**：蒸馏器 ✓ | 检索体系 ✓ | MCP ✓ | skill-judge v2 ✓ | 全量扫描 ✓ | 三波锻造 ✓ | 双螺旋 ✓ | 官方P0 ✓ | 官方P1 ✓
-- **当前任务**：commit + push P1 三个 Skills
-- **下一步**：官方仓库红色警报全部清零，可进入下一迭代
+- **阶段**：Phase 4 锻造完成 → Phase 5 织网 → Phase 2 发散搜索
+- **里程碑**：蒸馏器 ✓ | 检索体系 ✓ | MCP ✓ | skill-judge v2 ✓ | 全量扫描 ✓ | 三波锻造 ✓ | 双螺旋 ✓ | 官方P0 ✓ | 官方P1 ✓ | 已知目标扫描 ✓ | Raptor锻造 ✓
+- **当前任务**：更新 ARMORY + git commit
+- **下一步**：Phase 2 发散搜索新目标
 
 ## 关键上下文
 
-- Skills：34 (31+3官方P1) + superpowers(~12) | Agents：4 | Rules：12 | Hooks：7 | MCP：2
-- 官方P1新增：pr-review-toolkit (6视角PR审查), code-review (5-Agent合规审查), feature-dev (7阶段pipeline)
-- 来源：anthropics/claude-plugins-official (7,956⭐) 5个红色警报全部完成
-- 审查三件套：requesting-code-review(WHEN调度) → pr-review-toolkit/code-review(HOW执行) → code-review-standards(WHAT格式)
-- 报告：`reports/full-scan-2137.md`
+- Skills：38 (34+4新锻造) | Agents：4 | Rules：12 | Hooks：7 | MCP：2
+- 本轮新锻造：security-research, exploit-feasibility, fuzzing-automation, binary-analysis
+- Raptor 扫描：92% Expert，7 个 P0 红色警报
+- claude-code-security-review：50-60% Expert，5 个 P1 红色警报
 
 ## compact 后恢复指令
 

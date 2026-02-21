@@ -42,6 +42,10 @@
 | 多视角PR审查 | pr-review-toolkit | Skill | 基准 | 6视角并行审查(code/test/error/type/comment/simplify)+编排决策树+置信度≥80过滤 | 执行PR代码质量审查时 |
 | 合规性审查引擎 | code-review | Skill | 基准 | 5-Agent并行(CLAUDE.md合规/浅层Bug/Git历史/前序PR评论/代码注释)+独立逐issue置信度评分+假阳性分类学 | 执行PR合规性审查时 |
 | 功能开发流水线 | feature-dev | Skill | 基准 | 7阶段硬门控Pipeline(Discovery→Summary)+三哲学架构对比+澄清问题模板 | 新功能多文件+需求模糊时 |
+| 安全研究 | security-research | Skill | 基准 | 7阶段渗透测试工作流(扫描→验证→分析→数据流→利用→补丁→报告)+分层加载架构 | 安全研究、漏洞验证、PoC生成时 |
+| 漏洞可利用性 | exploit-feasibility | Skill | 基准 | 二进制漏洞可利用性评估+缓解措施分析(ASLR/DEP/RELRO)+约束检查+ROP Gadget质量评估 | CVE分析、安全审查、漏洞评估时 |
+| 模糊测试自动化 | fuzzing-automation | Skill | 基准 | AFL++集成+崩溃收集分类+语料库管理+信号优先级排序 | 模糊测试、崩溃分析时 |
+| 二进制分析 | binary-analysis | Skill | 基准 | Crash分析+调试技术(GDB/LLDB)+逆向工程基础+可利用性评估 | 二进制审计、崩溃调试时 |
 
 ### Skills（superpowers 插件提供）
 
