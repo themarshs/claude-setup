@@ -9,7 +9,7 @@ on:
       max_turns:
         description: 'Max agent turns'
         required: false
-        default: '100'
+        default: '30'
 
 env:
   ANTHROPIC_BASE_URL: https://api.minimaxi.com/anthropic
@@ -31,6 +31,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Load MiniMax system prompt
+        id: sysprompt
+        run: |
+          {
+            echo 'prompt<<ENDOFPROMPT'
+            cat .github/minimax-system-prompt.md
+            echo 'ENDOFPROMPT'
+          } >> "$GITHUB_OUTPUT"
+
       - name: Run Claude Code
         id: claude
         uses: anthropics/claude-code-action@v1
@@ -43,6 +52,7 @@ jobs:
           claude_args: |
             --model MiniMax-M2.5-highspeed
             --max-turns ${{ github.event.inputs.max_turns }}
+            --system-prompt "${{ steps.sysprompt.outputs.prompt }}"
 
       - name: Upload execution log
         if: always()

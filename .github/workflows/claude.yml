@@ -43,4 +43,4 @@ jobs:
           additional_permissions: |
             actions: read
           claude_args: |
-            --model MiniMax-M2.5-highspeed
+            --model MiniMax-M2.5
