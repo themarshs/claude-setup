@@ -55,6 +55,7 @@ jobs:
           anthropic_api_key: ${{ secrets.MINIMAX_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: ${{ github.event.inputs.task }}
+          show_full_output: true
           additional_permissions: |
             actions: read
           claude_args: |
