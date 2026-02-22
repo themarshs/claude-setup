@@ -84,18 +84,23 @@
 | `.claude/rules/dependency-management.md` | `**/*` | Pre-add 清单 + 版本锁定 + License Compliance + 审计 | awesome-claude-code-toolkit 精华 |
 | `.claude/rules/naming.md` | `**/*` | JS/TS/Python/DB 多语言命名规范 | awesome-claude-code-toolkit 精华 |
 | `.claude/rules/documentation.md` | `**/*` | What to/NOT to document + 注释原则 | awesome-claude-code-toolkit 精华 |
+| `.claude/rules/config-before-guess.md` | `**/*` | 配置变更先查文档后改文件 + 同类方法合并 Strike 计数 | Phase 2 元回顾补丁 |
 
 ### Hooks（自造）
 
 | 生态位 | 工具名 | 类型 | 综合分 | 用途 | 触发条件 |
 |--------|--------|------|--------|------|----------|
 | compact 前状态保存 | pre-compact-save.sh | Hook (PreCompact) | 基准 | 备份 MEMORY.md | 自动：context compact 前触发 |
-| compact 后状态恢复 | post-compact-restore.sh | Hook (SessionStart/compact) | 基准 | 注入 MEMORY.md 到上下文 | 自动：compact 后新会话启动 |
+| compact 后状态恢复 | post-compact-restore.sh | Hook (SessionStart/compact) | 基准 | 三层恢复：MEMORY.md + 执行纪律重注入 + CLAUDE.md 锚定 | 自动：compact 后新会话启动 |
 | 自主迭代守卫 | stop-guard.sh | Hook (Stop) | 基准 | 阻止自主迭代中意外停止 | 自动：Stop 事件触发 |
 | 文件修改追踪 | post-tool-dirty-tracker.sh | Hook (PostToolUse) | 基准 | 记录 Edit/Write/Bash 修改的文件 | 自动：PostToolUse 事件触发 |
 | 红线硬阻断 | pre-tool-guard.sh | Hook (PreToolUse) | 基准 | 阻止写 mcp-servers/ + 警告写 main 分支 | 自动：Edit/Write 前触发 |
 | 自动唤醒 | prompt-submit.sh | Hook (UserPromptSubmit) | 基准 | 会话首 prompt 自动读 MEMORY.md 前 30 行 | 自动：用户提交 prompt 时 |
 | 痛觉检测 | pain-tracker.sh | Hook (PostToolUse) | 基准 | 滑动窗口检测重复搜索+写入痛觉账本 | 自动：搜索类工具调用后触发 |
+| Skill 路由激活 | skill-activation.mjs | Hook (UserPromptSubmit) | 基准 | 匹配 skill-rules.json 路由表，注入 Skill 建议到上下文 | 自动：用户提交 prompt 时 |
+| 搜索路由建议 | search-router.mjs | Hook (PreToolUse/Grep) | 基准 | 分类 Grep 查询为 structural/literal/semantic，注入路由建议 | 自动：Grep 调用前触发 |
+| 配置编辑合规阻断 | compliance-check.mjs | Hook (PreToolUse/Edit) | 基准 | 编辑配置文件前检查是否已查文档，未查则硬阻断 | 自动：Edit/Write 配置文件时触发 |
+| 文档查询追踪 | doc-lookup-tracker.mjs | Hook (PostToolUse/WebSearch) | 基准 | 记录文档查询行为，解锁配置文件编辑权限（5min TTL） | 自动：WebSearch/WebFetch 后触发 |
 
 ### MCP
 
@@ -103,6 +108,7 @@
 |--------|--------|------|--------|------|----------|
 | GitHub API | github-mcp-server | v0.31.0 | 基准 | 搜索仓库/代码、读文件、管理 Issues/PRs | 需要 GitHub API 操作时 |
 | 社区资产检索 | distillery-mcp-server | v1.0.0 | 基准 | 4 工具（search/get_asset/similar/list_types）MCP 协议访问 distillery | Agent 程序化搜索社区资产时 |
+| 多模型编排 | pal-mcp-server | v9.8.2 | 基准 | 9 工具（chat/thinkdeep/planner/consensus/challenge/apilookup/clink/listmodels/version）跨模型协作 | 需要第二意见/共识/深度思考时 |
 
 ### Plugin
 
@@ -134,6 +140,9 @@
 | 199-bio/claude-deep-research-skill | 深度研究 | 7.2/10 未过 Delta Gate，精华已提取（5 阶段 Pipeline、Anti-Hallucination、并行搜索编排） | 2026-02-20 |
 | willccbb/claude-deep-research | 深度研究 | INCONCLUSIVE，GitHub API EOF 错误无法评估 | 2026-02-20 |
 | standardhuman/deep-research-skill | 深度研究 | INCONCLUSIVE，GitHub API EOF 错误无法评估 | 2026-02-20 |
+| oraios/serena | 语义检索 MCP | SKIP，LSP 代码智能，与 Markdown/Skills 管理场景不匹配 | 2026-02-22 |
+| sickn33/antigravity-awesome-skills | Skills 集合 | SKIP，883 个薄 Skills 广度无深度，缺少我们需要的细分领域 | 2026-02-22 |
+| idosal/git-mcp | GitHub 文档 MCP | SKIP，75% 被现有工具覆盖，云端锁定 | 2026-02-22 |
 
 ## 待填充生态位
 

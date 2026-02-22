@@ -12,7 +12,8 @@
       "mcp__distillery__search",
       "mcp__distillery__get_asset",
       "mcp__distillery__list_types",
-      "mcp__distillery__similar"
+      "mcp__distillery__similar",
+      "mcp__pal__*"
     ]
   },
   "enabledMcpjsonServers": [
@@ -39,6 +40,21 @@
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pre-tool-guard.sh\"",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/compliance-check.mjs\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/search-router.mjs\"",
+            "timeout": 5
           }
         ]
       }
@@ -53,6 +69,16 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "matcher": "WebSearch|WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/doc-lookup-tracker.mjs\"",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -61,6 +87,15 @@
           {
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/prompt-submit.sh\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/skill-activation.mjs\"",
             "timeout": 5
           }
         ]

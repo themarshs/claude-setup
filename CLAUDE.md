@@ -28,12 +28,12 @@
 - 基因熔炉：禁止直接安装黑盒，精华必须通过 skill-creator 内化为自造 Skill，糟粕剥离后原包销毁
 - 计次熔断：6 次搜索后仍无 >80 分工具，转 skill-creator 自造
 
-## 红线
+## 红线（肯定框架）
 
-- 不碰 `D:/ai/mcp-servers/` 除非明确授权
-- 不提交 API keys / tokens / credentials
-- 不装未过沙箱双重安检的工具
-- 不基于过时知识输出方案——先查 `docs/` 和 context7
+- MCP servers 目录由用户管理，需变更时请示用户
+- 密钥/凭证通过环境变量管理，提交前确认 `.gitignore` 覆盖
+- 所有工具先在 `D:/ai/lab/skill-sandbox/` 验证，通过后安装
+- 方案输出前先用 context7 / WebSearch 验证时效性
 
 ## 索引
 

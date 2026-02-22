@@ -1,0 +1,327 @@
+{
+  "version": "1.0",
+  "description": "Skill/Agent activation routing table. Consumed by skill-activation.sh hook on UserPromptSubmit.",
+  "ambiguousTerms": {
+    "test": ["unit", "jest", "pytest", "vitest", "spec", "coverage", "tdd", "e2e"],
+    "review": ["code", "pr", "pull request", "diff", "merge"],
+    "build": ["npm", "yarn", "webpack", "compile", "docker"],
+    "fix": ["bug", "error", "broken", "failing", "crash", "exception"],
+    "debug": ["error", "bug", "crash", "stack trace", "breakpoint", "logs"],
+    "plan": ["implementation", "architecture", "design", "roadmap"],
+    "search": ["find", "grep", "locate", "query"],
+    "deploy": ["server", "production", "docker", "kubernetes"],
+    "refactor": ["code", "function", "class", "module", "clean"]
+  },
+  "skills": {
+    "retrieval-methodology": {
+      "type": "guardrail",
+      "enforcement": "suggest",
+      "priority": "critical",
+      "description": "检索方法论：先分类意图，再选通道，后交叉验证",
+      "promptTriggers": {
+        "keywords": ["搜索", "检索", "找一个", "有没有", "搜一下", "search for", "find a skill", "look for"],
+        "intentPatterns": ["(搜|找|检索|search|find|hunt).*?(skill|tool|方案|工具|库|方法)", "(有没有|is there|any existing).*?(skill|tool|方案|现成)"],
+        "excludeKeywords": ["搜索结果", "search result", "找到了", "found"]
+      }
+    },
+    "tdd-workflow": {
+      "type": "guardrail",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "TDD红绿循环+Playwright隔离+EDD评估框架",
+      "promptTriggers": {
+        "keywords": ["写测试", "tdd", "write test", "add test", "test driven", "红绿循环"],
+        "intentPatterns": ["(写|加|添加|write|add|create).*?(测试|test)", "(test|测试).*(first|先|driven)"],
+        "excludeKeywords": ["测试结果", "test passed", "测试通过", "test result"]
+      }
+    },
+    "context-engineering": {
+      "type": "guardrail",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "上下文退化检测+压缩策略+tokens-per-task优化",
+      "promptTriggers": {
+        "keywords": ["compact", "上下文", "token优化"],
+        "intentPatterns": ["(context|上下文).*(长|满|大|管理|优化|compact)", "(token|tokens).*(节省|save|优化|reduce)"],
+        "excludeKeywords": ["context7"]
+      }
+    },
+    "feature-dev": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "7阶段功能开发流水线：Discovery到Summary+三哲学架构对比",
+      "promptTriggers": {
+        "keywords": ["新功能", "new feature", "实现功能", "implement feature", "add feature", "加功能"],
+        "intentPatterns": ["(新|new|加|add|implement|实现|开发|build).*?(功能|feature|模块|module)", "(feature|功能).*(开发|development|pipeline)"],
+        "excludeKeywords": []
+      }
+    },
+    "parallel-debugging": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "ACH多假设竞争+证据强度分级+3-Strike集成",
+      "promptTriggers": {
+        "keywords": ["调试", "排查", "诊断"],
+        "intentPatterns": ["(bug|错误|error|crash|失败|fail).*?(排查|调试|debug|fix|诊断)", "(复杂|weird|strange|奇怪).*?(bug|error|问题|issue)"],
+        "excludeKeywords": ["debug log", "调试日志"]
+      }
+    },
+    "pr-review-toolkit": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "6视角并行PR审查+编排决策树+置信度过滤",
+      "promptTriggers": {
+        "keywords": ["review pr", "审查pr", "pr review", "pr审查"],
+        "intentPatterns": ["(review|审查|检查).*(pr|pull request)", "pr.*(review|审查)"],
+        "excludeKeywords": []
+      }
+    },
+    "code-review": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "5-Agent并行合规性审查+逐issue评分+假阳性分类学",
+      "promptTriggers": {
+        "keywords": ["代码审查", "code review", "合规审查", "compliance review"],
+        "intentPatterns": ["(代码|code).*(审查|review)", "(合规|compliance).*(审查|review|检查)"],
+        "excludeKeywords": []
+      }
+    },
+    "requesting-code-review": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "审查触发决策树+工作流节奏映射+反馈响应规则",
+      "promptTriggers": {
+        "keywords": ["做完了", "完成了", "done", "finished", "ready for review"],
+        "intentPatterns": ["(完成|做完|写完|done|finished|completed).*?(功能|feature|task|任务)", "(ready|准备).*(review|merge|提交)"],
+        "excludeKeywords": []
+      }
+    },
+    "api-design": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "URL决策表+HTTP方法矩阵+分页决策树+限流分级",
+      "promptTriggers": {
+        "keywords": ["api设计", "api design", "rest api", "接口设计", "endpoint设计"],
+        "intentPatterns": ["(设计|design|create|创建).*?(api|接口|endpoint)", "(rest|graphql).*?(api|接口)"],
+        "excludeKeywords": ["api key", "api token"]
+      }
+    },
+    "docker-patterns": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "多阶段Dockerfile+安全加固+网络隔离+部署策略",
+      "promptTriggers": {
+        "keywords": ["docker", "dockerfile", "容器", "docker-compose", "kubernetes", "k8s"],
+        "intentPatterns": ["(docker|容器|container).*?(部署|deploy|构建|build|配置)", "(dockerfile|compose|k8s|kubernetes)"],
+        "excludeKeywords": []
+      }
+    },
+    "database-expertise": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "索引选择矩阵+Schema反模式+RLS优化+并发模式",
+      "promptTriggers": {
+        "keywords": ["数据库", "database", "postgresql", "postgres", "索引", "schema", "migration"],
+        "intentPatterns": ["(数据库|database|db|sql).*?(设计|design|优化|optimize|索引|index)", "(table|表|column|migration).*?(设计|create|add|alter)"],
+        "excludeKeywords": []
+      }
+    },
+    "mcp-development": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "MCP Server开发：Transport决策+4 Primitive+Tool设计+调试",
+      "promptTriggers": {
+        "keywords": ["mcp server", "mcp开发", "mcp tool", "model context protocol"],
+        "intentPatterns": ["(开发|build|create|写).*?(mcp|model context protocol)", "mcp.*(server|tool|resource|prompt)"],
+        "excludeKeywords": ["mcp add-json", "mcp__"]
+      }
+    },
+    "prompt-engineering": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "7框架选择矩阵+Claude XML优化+Description Engineering",
+      "promptTriggers": {
+        "keywords": ["prompt设计", "prompt engineering", "system prompt", "提示词"],
+        "intentPatterns": ["(设计|write|写|优化).*?(prompt|提示词|system message)", "(prompt|提示词).*(工程|engineering|优化|design)"],
+        "excludeKeywords": []
+      }
+    },
+    "tool-design": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "合并原则+架构精简+Description Engineering+MCP命名",
+      "promptTriggers": {
+        "keywords": ["tool设计", "tool design", "设计skill", "设计tool"],
+        "intentPatterns": ["(设计|design|create).*?(tool|skill|agent|工具)", "(tool|skill|agent).*(设计|design|架构)"],
+        "excludeKeywords": []
+      }
+    },
+    "security-research": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "7阶段渗透测试工作流：扫描到验证到利用到补丁到报告",
+      "promptTriggers": {
+        "keywords": ["渗透测试", "penetration test", "安全研究", "security research", "漏洞", "vulnerability", "exploit"],
+        "intentPatterns": ["(安全|security).*(研究|research|测试|test|审计|audit)", "(漏洞|vulnerability|exploit).*(验证|分析|poc)"],
+        "excludeKeywords": ["security gate", "security-gate"]
+      }
+    },
+    "deep-research": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "5阶段深度调研Pipeline+并行搜索+交叉验证",
+      "promptTriggers": {
+        "keywords": ["深度调研", "deep research", "调研", "技术比较", "对比分析", "竞品"],
+        "intentPatterns": ["(调研|research|比较|compare|对比).*?(技术|方案|框架|library|tool)", "(竞品|competitor|行业).*(分析|analysis|调研)"],
+        "excludeKeywords": []
+      }
+    },
+    "hunt": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "4步渐进式GitHub搜索+反偏见检查+结构化评估",
+      "promptTriggers": {
+        "keywords": ["github搜索", "github search", "找仓库", "find repo"],
+        "intentPatterns": ["(搜|search|find).*?(github|repo|仓库|repository)", "github.*(搜索|search|find)"],
+        "excludeKeywords": []
+      }
+    },
+    "code-refactoring": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "knip/depcheck工具链+SAFE/CAREFUL/RISKY分级+债务预算",
+      "promptTriggers": {
+        "keywords": ["重构", "refactor", "技术债", "tech debt", "dead code", "清理代码"],
+        "intentPatterns": ["(重构|refactor|清理|cleanup).*?(代码|code|模块|module)", "(技术债|tech debt|dead code)"],
+        "excludeKeywords": []
+      }
+    },
+    "multi-agent-team": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "并行派发+文件所有权+5阶段pipeline+消息通信",
+      "promptTriggers": {
+        "keywords": ["多agent", "multi agent", "并行任务", "parallel agent", "团队协作", "swarm"],
+        "intentPatterns": ["(多|multi|parallel).*(agent|任务|task)", "(团队|team|swarm).*(协作|coordinate|dispatch)"],
+        "excludeKeywords": []
+      }
+    },
+    "skill-judge": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "双模式：整体评分(Mode1)+元素解剖锻造(Mode2)",
+      "promptTriggers": {
+        "keywords": ["评估skill", "审判", "skill judge", "evaluate skill", "锻造"],
+        "intentPatterns": ["(评估|evaluate|judge|审判|锻造).*?(skill|tool|工具)", "(skill|工具).*(评分|score|评估)"],
+        "excludeKeywords": []
+      }
+    },
+    "context7": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "curl调context7.com API查最新库/框架文档",
+      "promptTriggers": {
+        "keywords": ["查文档", "check docs", "官方文档", "official docs", "context7", "api文档"],
+        "intentPatterns": ["(查|check|看|read).*?(文档|docs|documentation)", "(最新|latest|current).*(文档|docs|api|用法|usage)"],
+        "excludeKeywords": []
+      }
+    },
+    "rag": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "Orama混合搜索+Vectra TextSplitter语义检索",
+      "promptTriggers": {
+        "keywords": ["语义搜索", "semantic search", "rag", "向量搜索", "vector search"],
+        "intentPatterns": ["(语义|semantic|向量|vector).*(搜索|search|检索)"],
+        "excludeKeywords": []
+      }
+    },
+    "office-documents": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "docx/xlsx/pdf/pptx生成+OOXML结构+模板模式",
+      "promptTriggers": {
+        "keywords": ["生成文档", "docx", "xlsx", "pptx", "word文档", "excel", "powerpoint"],
+        "intentPatterns": ["(生成|create|write|export).*?(文档|document|word|excel|pdf|ppt)", "(docx|xlsx|pptx).*(生成|create|export)"],
+        "excludeKeywords": ["读pdf", "pdf reading"]
+      }
+    },
+    "hookify": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "Markdown+YAML声明式Hook规则+block/warn双模式",
+      "promptTriggers": {
+        "keywords": ["新hook", "add hook", "创建hook", "create hook", "hookify"],
+        "intentPatterns": ["(新增|添加|创建|add|create).*?(hook|guard|拦截)", "hook.*(规则|rule|pattern)"],
+        "excludeKeywords": []
+      }
+    },
+    "ralph-loop": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "Stop Hook自循环+完成信号匹配+迭代安全阀",
+      "promptTriggers": {
+        "keywords": ["无人值守", "autonomous", "自循环", "ralph", "overnight", "unattended"],
+        "intentPatterns": ["(无人|autonomous|unattended|overnight).*(运行|run|执行|loop)", "(自动|auto).*(循环|loop|iterate)"],
+        "excludeKeywords": []
+      }
+    }
+  },
+  "agents": {
+    "architect": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "4阶段架构设计工作流+ADR模板+8反模式检测",
+      "promptTriggers": {
+        "keywords": ["架构设计", "architecture", "系统设计", "system design", "技术选型"],
+        "intentPatterns": ["(架构|architecture|系统).*(设计|design|决策|decision)", "(技术选型|tech stack)"],
+        "excludeKeywords": ["architecture map", "architecture_map"]
+      }
+    },
+    "security-reviewer": {
+      "type": "guardrail",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "OWASP深度审查+语言特定模式+严重性SLA",
+      "promptTriggers": {
+        "keywords": ["安全审计", "security audit", "安全审查", "security review", "owasp"],
+        "intentPatterns": ["(安全|security).*(审计|audit|审查|review|检查)", "(高风险|high risk).*(变更|change)"],
+        "excludeKeywords": ["security-gate"]
+      }
+    },
+    "retrieval-orchestrator": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "意图分解+多通道调度+合并交叉验证",
+      "promptTriggers": {
+        "keywords": ["综合检索", "多通道搜索", "全面搜索", "comprehensive search"],
+        "intentPatterns": ["(综合|comprehensive|全面|multi).*(检索|search|搜索)", "(多个|multiple).*(通道|channel|source).*(搜索|search)"],
+        "excludeKeywords": []
+      }
+    }
+  }
+}
