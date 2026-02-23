@@ -62,7 +62,7 @@ Governance → Audit → Learning
 | `/error-handling` | — | 标准化错误恢复 |
 | 其余 2 个 | — | 待确认 |
 
-### MCP Server（3 个）
+### MCP Server（3 个） [STALE]
 <!-- sources: .claude/settings.json -->
 
 | 服务 | 位置 | 功能 |

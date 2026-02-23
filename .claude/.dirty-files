@@ -94,6 +94,7 @@ BASH: rm "D:/ai/setup/MEMORY.bak"
 BASH: rm "D:/ai/setup/MEMORY.bak"
 BASH: rm -f D:/ai/setup/tmp-parse-log.py D:/ai/setup/tmp-parse-log.json
 BASH: rm D:/ai/setup/MEMORY.bak
+C:/Users/19132/.claude/settings.json
 C:\Users\19132\.claude\plans\curried-waddling-pinwheel.md
 D:/ai/distillery/DISTILLATION-REPORT.md
 D:/ai/distillery/distill.mjs
@@ -116,6 +117,7 @@ D:/ai/setup/.claude/skills/skill-judge/SKILL.md
 D:/ai/setup/.claude/skills/skill-judge/references/element-dissection.md
 D:/ai/setup/.claude/skills/skill-judge/references/whole-skill-evaluation.md
 D:/ai/setup/.gitignore
+D:/ai/setup/.mcp.json
 D:/ai/setup/.mcp.json
 D:/ai/setup/ARMORY.md
 D:/ai/setup/CLAUDE.md

@@ -1,5 +1,9 @@
 {
   "mcpServers": {
+    "minimax-docs": {
+      "type": "http",
+      "url": "https://platform.minimaxi.com/docs/mcp"
+    },
     "distillery": {
       "type": "stdio",
       "command": "node",
@@ -10,9 +14,14 @@
         "NODE_PATH": "D:/ai/distillery/node_modules"
       }
     },
-    "minimax-docs": {
-      "type": "url",
-      "url": "https://platform.minimaxi.com/docs/mcp"
+    "minimax-coding-plan": {
+      "type": "stdio",
+      "command": "C:/Users/19132/AppData/Roaming/Python/Python314/Scripts/uvx.exe",
+      "args": ["minimax-coding-plan-mcp", "-y"],
+      "env": {
+        "MINIMAX_API_KEY": "${MINIMAX_API_KEY}",
+        "MINIMAX_API_HOST": "https://api.minimaxi.com"
+      }
     }
   }
 }
