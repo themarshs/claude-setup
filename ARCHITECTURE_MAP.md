@@ -71,7 +71,7 @@ Governance → Audit → Learning
 | governance-mcp-server | `D:/ai/mcp-servers/governance-mcp-server/` | 治理层 MCP |
 | govops-mcp-server | `D:/ai/mcp-servers/govops-mcp-server/` | 审计日志记录 |
 
-### 关键配置位置
+### 关键配置位置 [STALE]
 <!-- sources: .claude/settings.json, CLAUDE.md -->
 
 | 路径 | 内容 |
@@ -103,10 +103,10 @@ Governance → Audit → Learning
 
 ---
 
-## 三、Claude Code 可用的原生扩展点
+## 三、Claude Code 可用的原生扩展点 [STALE]
 <!-- sources: CLAUDE.md, docs/hooks.md, docs/skills.md, docs/settings.md -->
 
-### 配置层级（优先级高→低）
+### 配置层级（优先级高→低） [STALE]
 <!-- sources: .claude/settings.json, .claude/settings.local.json -->
 1. `managed-settings.json` — 组织强制
 2. CLI 启动参数 — 单次会话
@@ -114,7 +114,7 @@ Governance → Audit → Learning
 4. `.claude/settings.json` — 项目共享
 5. `~/.claude/settings.json` — 全局
 
-### 知识注入
+### 知识注入 [STALE]
 <!-- sources: CLAUDE.md, .claude/rules/coding.md, .claude/rules/confidence-gate.md, .claude/rules/error-discipline.md, .claude/rules/security-gate.md -->
 - `CLAUDE.md` — 多级：组织 / 全局 / 项目 / 子目录
 - `.claude/rules/*.md` — 模块化规则（支持 glob 路径匹配）

@@ -19,6 +19,11 @@
 3. **Forced Bootstrap**：发散/审判阶段禁止直接用基础命令，必须先读 ARMORY.md 路由到该生态位最高阶工具
 4. **Mutation Checkpoint**：每圈结束必须产出真实 Diff（改 CLAUDE.md 或 settings.json）或在 ARMORY.md 标注"已封顶+理由"，否则判定无效迭代
 
+## 工作流纪律（最高执行优先级）
+
+Phase 0 置信度评估 → Phase 1 调研（派 Agent，自己不查）→ Phase 2 综合出方案 → Phase 3 执行（委派，自己不动手）→ Phase 4 验证汇报
+详见 `.claude/rules/workflow-discipline.md`
+
 ## SOP（6 步，严禁跳步）
 
 锚定 → 发散 → 审判（沙箱双重安检）→ 试装 → 织网 → 元回顾

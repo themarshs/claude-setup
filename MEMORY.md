@@ -5,21 +5,24 @@
 
 ## 当前状态
 
-- **阶段**：Phase 3 分层调度架构 — P0+P1+P2 全部完成，进入实战验证
-- **里程碑**：CC-v3解剖 ✓ | skill-activation ✓ | 根因分析 ✓ | Rules精简 ✓ | 否定→肯定重写 ✓ | 方法等价类 ✓ | search-router ✓ | compliance-check ✓ | doc-lookup-tracker ✓ | PostCompact增强 ✓
-- **当前任务**：全部完成，进入实战迭代——哪个出问题优化哪个
-- **下一步**：实战验证 11 hooks 系统 → 根据实际触发情况调优路由表/阈值
+- **阶段**：工作流纪律固化完成 → 实战验证阶段
+- **里程碑**：P0-P2 ✓ | 瓶颈调研 ✓ | 工作流纪律 Rule ✓ | CLAUDE.md 引用 ✓
+- **当前任务**：用实际任务验证 workflow-discipline 流程
+- **待办**：Task#3 评分函数升级 | 三层防线实现 | /doctor settings issue
+
+## 三层防线方案（调研结论）
+
+- **L1 软引导**：UserPromptSubmit → additionalContext 注入"编辑前必须搜索"
+- **L2 硬拦截**：PostToolUse 记录搜索状态 → PreToolUse(Edit|Write) 检查，无搜索则 deny
+- **L3 事后补救**：Stop Hook 检查本轮是否有"未搜索就编辑"，有则 block 强制补做
+- **备选**：`type: "agent"` Hook（子 Agent 语义验证），成本高但可做相关性校验
+- 社区无成熟解法，GitHub #24252/#20526/#26004 均 Open
 
 ## 关键上下文
 
-- Skills：38 | Agents：4 | **Rules：3 核心 + 10 条件加载** | **Hooks：11** | MCP：3
-- Rules 精简：13→3 核心（confidence-gate, error-discipline, language），10 条在 `.claude/rules-conditional/`
-- 合规闭环：compliance-check（硬阻断配置编辑）↔ doc-lookup-tracker（查文档后 5min 解锁）
-- search-router：PreToolUse/Grep，三类分类（structural/literal/semantic），suggest 模式
-- skill-activation：UserPromptSubmit，匹配 skill-rules.json（25 skills + 3 agents + excludeKeywords）
-- PostCompact 三层恢复：MEMORY.md + 执行纪律重注入 + CLAUDE.md 锚定
-- 根因分析 10 条核心：注意力稀释 + Solver's Override + 软硬鸿沟 → 已三管齐下解决
-- CC-v3 教训：Hook ≤10（我们 11 接近上限）| 纯 Node.js | suggest 不 deny
+- Skills：38 | Agents：4 | Rules：3+10 | **Hooks：11** | MCP：3
+- CC-v3 教训：Hook ≤10（我们 11）| suggest 不 deny | 30 hooks 致性能崩溃
+- 合规闭环：compliance-check ↔ doc-lookup-tracker（5min TTL）
 
 ## compact 后恢复指令
 

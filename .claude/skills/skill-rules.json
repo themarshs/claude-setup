@@ -19,9 +19,9 @@
       "priority": "critical",
       "description": "检索方法论：先分类意图，再选通道，后交叉验证",
       "promptTriggers": {
-        "keywords": ["搜索", "检索", "找一个", "有没有", "搜一下", "search for", "find a skill", "look for"],
-        "intentPatterns": ["(搜|找|检索|search|find|hunt).*?(skill|tool|方案|工具|库|方法)", "(有没有|is there|any existing).*?(skill|tool|方案|现成)"],
-        "excludeKeywords": ["搜索结果", "search result", "找到了", "found"]
+        "keywords": ["搜索", "检索", "找一个", "有没有", "搜一下", "search for", "find a skill", "look for", "装上", "接入", "集成", "integrate", "对比", "compare", "选型", "选哪个", "which one", "best practice", "最佳实践"],
+        "intentPatterns": ["(搜|找|检索|search|find|hunt).*?(skill|tool|方案|工具|库|方法)", "(有没有|is there|any existing).*?(skill|tool|方案|现成)", "(装|install|接入|integrate|集成).*?(工具|tool|mcp|server|sdk|库|library|framework)", "(设计|design|架构|architecture).*?(方案|system|系统)", "(对比|compare|选型|选哪个|which).*?(方案|tool|框架|库|library)", "(怎么解决|how to solve|how to fix)"],
+        "excludeKeywords": ["搜索结果", "search result", "找到了", "found", "装好了", "已安装", "已接入", "already installed"]
       }
     },
     "tdd-workflow": {
@@ -184,20 +184,20 @@
       "priority": "medium",
       "description": "5阶段深度调研Pipeline+并行搜索+交叉验证",
       "promptTriggers": {
-        "keywords": ["深度调研", "deep research", "调研", "技术比较", "对比分析", "竞品"],
-        "intentPatterns": ["(调研|research|比较|compare|对比).*?(技术|方案|框架|library|tool)", "(竞品|competitor|行业).*(分析|analysis|调研)"],
-        "excludeKeywords": []
+        "keywords": ["深度调研", "deep research", "调研", "技术比较", "对比分析", "竞品", "报错", "error", "这个不行", "不工作", "学一下", "了解一下"],
+        "intentPatterns": ["(调研|research|比较|compare|对比).*?(技术|方案|框架|library|tool)", "(竞品|competitor|行业).*(分析|analysis|调研)", "(报错|error|不行|不工作|failed|broken|出问题)", "(学|了解|learn|understand).*?(框架|技术|library|framework|tool)"],
+        "excludeKeywords": ["调研完成", "research done"]
       }
     },
     "hunt": {
       "type": "workflow",
       "enforcement": "suggest",
       "priority": "medium",
-      "description": "4步渐进式GitHub搜索+反偏见检查+结构化评估",
+      "description": "4步渐进式GitHub搜索+反偏见检查+结构化评估+社区反馈检索",
       "promptTriggers": {
-        "keywords": ["github搜索", "github search", "找仓库", "find repo"],
-        "intentPatterns": ["(搜|search|find).*?(github|repo|仓库|repository)", "github.*(搜索|search|find)"],
-        "excludeKeywords": []
+        "keywords": ["github搜索", "github search", "找仓库", "find repo", "社区反馈", "community feedback", "别人怎么", "issue", "评论", "comments"],
+        "intentPatterns": ["(搜|search|find).*?(github|repo|仓库|repository)", "github.*(搜索|search|find)", "(别人|others|community|社区).*(怎么|how|反馈|feedback|评价)", "(issue|评论|comment|讨论|discussion).*(看看|check|搜|search)"],
+        "excludeKeywords": ["issue fixed", "issue closed"]
       }
     },
     "code-refactoring": {
@@ -236,12 +236,12 @@
     "context7": {
       "type": "domain",
       "enforcement": "suggest",
-      "priority": "medium",
+      "priority": "high",
       "description": "curl调context7.com API查最新库/框架文档",
       "promptTriggers": {
-        "keywords": ["查文档", "check docs", "官方文档", "official docs", "context7", "api文档"],
-        "intentPatterns": ["(查|check|看|read).*?(文档|docs|documentation)", "(最新|latest|current).*(文档|docs|api|用法|usage)"],
-        "excludeKeywords": []
+        "keywords": ["查文档", "check docs", "官方文档", "official docs", "context7", "api文档", "安装", "install", "配置", "setup", "怎么用", "how to use", "用法", "usage", "getting started"],
+        "intentPatterns": ["(查|check|看|read).*?(文档|docs|documentation)", "(最新|latest|current).*(文档|docs|api|用法|usage)", "(安装|install|配置|setup|configure).*?(方法|方式|步骤|guide)", "(怎么|how to).*(用|use|安装|install|配置|configure|接入)"],
+        "excludeKeywords": ["安装完成", "installed", "配置好了", "configured"]
       }
     },
     "rag": {

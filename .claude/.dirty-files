@@ -79,15 +79,20 @@
 /home/runner/work/claude-setup/claude-setup/.claude/skills/security-research/SKILL.md
 /home/runner/work/claude-setup/claude-setup/ARMORY.md
 /home/runner/work/claude-setup/claude-setup/MEMORY.md
+/tmp/parse-log.py
 BASH: cd "D:/ai/mcp-servers/distillery-mcp-server" && NODE_PATH="D:/ai/distillery/node_modules" timeout 60 node -e "
 BASH: cd "D:/ai/mcp-servers/distillery-mcp-server" && timeout 15 node -e "
 BASH: cd D:/ai/distillery && git rm --cached output/search-index.json 2>&1
+BASH: cp "D:/ai/setup/MEMORY.md" "D:/ai/setup/MEMORY.bak"
 BASH: cp "D:/ai/setup/MEMORY.md" "D:/ai/setup/MEMORY.bak"
 BASH: cp /home/runner/work/claude-setup/claude-setup/MEMORY.md /home/runner/work/claude-setup/claude-setup/MEMORY.bak
 BASH: cp D:/ai/setup/MEMORY.md D:/ai/setup/MEMORY.bak
 BASH: node -e "
 BASH: python -c "
+BASH: rm "D:/ai/setup/.github/workflows/auto-scan.yml"
 BASH: rm "D:/ai/setup/MEMORY.bak"
+BASH: rm "D:/ai/setup/MEMORY.bak"
+BASH: rm -f D:/ai/setup/tmp-parse-log.py D:/ai/setup/tmp-parse-log.json
 BASH: rm D:/ai/setup/MEMORY.bak
 C:\Users\19132\.claude\plans\curried-waddling-pinwheel.md
 D:/ai/distillery/DISTILLATION-REPORT.md
@@ -99,6 +104,7 @@ D:/ai/mcp-servers/distillery-mcp-server/index.mjs
 D:/ai/mcp-servers/distillery-mcp-server/package.json
 D:/ai/setup/.claude/agents/retrieval-orchestrator.md
 D:/ai/setup/.claude/rules/code-review-standards.md
+D:/ai/setup/.claude/rules/workflow-discipline.md
 D:/ai/setup/.claude/settings.local.json
 D:/ai/setup/.claude/skills/deep-research/SKILL.md
 D:/ai/setup/.claude/skills/distillery-search/SKILL.md
@@ -112,6 +118,8 @@ D:/ai/setup/.claude/skills/skill-judge/references/whole-skill-evaluation.md
 D:/ai/setup/.gitignore
 D:/ai/setup/.mcp.json
 D:/ai/setup/ARMORY.md
+D:/ai/setup/CLAUDE.md
+D:/ai/setup/MEMORY.md
 D:/ai/setup/MEMORY.md
 D:/ai/setup/research-openclaw.md
 D:\ai\distillery\.gitignore
@@ -119,21 +127,42 @@ D:\ai\distillery\README.md
 D:\ai\distillery\build-index.mjs
 D:\ai\distillery\distill.mjs
 D:\ai\distillery\search.mjs
+D:\ai\lab\skill-sandbox\pal-mcp-server\.env
+D:\ai\setup\.claude\hooks\compliance-check.mjs
+D:\ai\setup\.claude\hooks\doc-lookup-tracker.mjs
+D:\ai\setup\.claude\hooks\post-compact-restore.sh
+D:\ai\setup\.claude\hooks\search-router.mjs
+D:\ai\setup\.claude\hooks\skill-activation.mjs
+D:\ai\setup\.claude\hooks\skill-activation.sh
 D:\ai\setup\.claude\rules\coding.md
 D:\ai\setup\.claude\rules\confidence-gate.md
+D:\ai\setup\.claude\rules\config-before-guess.md
+D:\ai\setup\.claude\rules\error-discipline.md
 D:\ai\setup\.claude\rules\error-discipline.md
 D:\ai\setup\.claude\rules\handoff-protocol.md
 D:\ai\setup\.claude\rules\language.md
 D:\ai\setup\.claude\rules\lead-discipline.md
 D:\ai\setup\.claude\rules\security-gate.md
+D:\ai\setup\.claude\settings.local.json
 D:\ai\setup\.claude\skills\deep-research\SKILL.md
 D:\ai\setup\.claude\skills\distillery-search\SKILL.md
 D:\ai\setup\.claude\skills\knowledge-evolution\SKILL.md
+D:\ai\setup\.claude\skills\skill-rules.json
+D:\ai\setup\.github\minimax-mcp-config.json
+D:\ai\setup\.github\minimax-system-prompt.md
 D:\ai\setup\.github\workflows\auto-scan.yml
+D:\ai\setup\.github\workflows\auto-scan.yml
+D:\ai\setup\.github\workflows\claude-dispatch.yml
+D:\ai\setup\.github\workflows\claude.yml
+D:\ai\setup\.mcp.json
 D:\ai\setup\ARMORY.md
+D:\ai\setup\ARMORY.md
+D:\ai\setup\CLAUDE.md
+D:\ai\setup\MEMORY.md
 D:\ai\setup\MEMORY.md
 D:\ai\setup\README.md
 D:\ai\setup\research-mcp-ecosystem.md
+D:\ai\setup\tmp-parse-log.py
 console.error('[DIAG] Starting import...');
 const dir = 'D:/ai/distillery/output';
 const fs = require('fs');
